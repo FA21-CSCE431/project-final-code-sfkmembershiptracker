@@ -1,5 +1,23 @@
 # README
 
+## Setting Up the Environment
+If you use GitHub desktop, skip the first two commands. When running rails css:install:tailwind, do NOT overwrite tailwind.config.js.
+```
+git clone https://github.com/spclark/sfk-membership-tracker.git
+git checkout -b myBranchName dev
+bundle install
+rails db:create
+rails db:migrate
+rails css:install:tailwind
+yarn build:css
+```
+
+## Running the Live Server
+This app can be run entirely in a Docker container. In two terminals running simultaneously, run the following:
+* To run the Rails live server: ```rails s --binding=0.0.0.0```
+* To recompile stylesheets: ```yarn build:css --watch```\
+  This will recompile any stylesheets you edit into a single stylesheet found at 'app/assets/builds.application.css'. To be more efficient, only Tailwind classes that are being used in the app are added to this stylesheet. You can run the command without the --watch flag to recompile at any time.
+
 ## General Info
 * Routing info is found in 'config/routes.rb'. You'll notice that static pages are displayed using the routes_controller.
 * With the exception of the navbar, any partial views (forms, for example) are found in 'app/views/partials/'. Static pages are found in 'app/views/routes/'.
@@ -17,9 +35,3 @@
 * Stylesheets go in the 'app/assets/stylesheets/' directory.
 * If you would like to extend the default Tailwind theme, you can edit the file tailwind.config.js found in the root of the project directory. You can find more info on customizing Tailwind [here](https://tailwindcss.com/docs/configuration).
 * The colors maroon (#500000) and maroon-dark (#300000) have been added to the Tailwind theme. You can use them like any other color class in Tailwind.
-
-## Running the Live Server
-This app can be run entirely in a Docker container. In two terminals running simultaneously, run the following:
-* To run the Rails live server: ```rails s --binding=0.0.0.0```
-* To recompile stylesheets: ```yarn build:css --watch```\
-  This will recompile any stylesheets you edit into a single stylesheet found at 'app/assets/builds.application.css'. To be more efficient, only Tailwind classes that are being used in the app are added to this stylesheet. You can run the command without the --watch flag to recompile at any time.

@@ -8,6 +8,7 @@ git checkout -b myBranchName dev
 bundle install
 rails db:create
 rails db:migrate
+rails db:seed
 rails css:install:tailwind
 yarn build:css
 ```

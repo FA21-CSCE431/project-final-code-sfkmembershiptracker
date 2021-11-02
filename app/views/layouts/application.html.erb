@@ -6,8 +6,6 @@
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
-    <%# <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %> %>
-    <%# <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
     <%= stylesheet_link_tag "application" %>
   </head>
 
@@ -18,5 +16,24 @@
       <p class="alert"><%= alert %></p>
       <%= yield %>
     </main>
+    <script>
+      // Navbar toggle functionality
+      function toggleNav() {
+          const open = document.getElementById('navbar-open');
+          const close = document.getElementById('navbar-close');
+
+          open.classList.toggle('hidden');
+          close.classList.toggle('hidden');
+
+          const nav = document.querySelector('#links');
+          nav.classList.toggle('hidden');
+      }
+
+      // Initial actions after page loads
+      window.onload = () => {
+          document.getElementById('navbar-open').addEventListener('click', toggleNav);
+          document.getElementById('navbar-close').addEventListener('click', toggleNav);
+      };
+    </script>
   </body>
 </html>

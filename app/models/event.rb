@@ -5,5 +5,5 @@ class Event < ApplicationRecord
   validates :date, presence:true
   validates :location, presence:true
   validates :points, presence:true
-  validates :code, presence:true
+  validates :confirmation_code, presence:true
 end

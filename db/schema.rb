@@ -32,7 +32,7 @@ ActiveRecord::Schema.define(version: 2021_10_25_074514) do
     t.date "date"
     t.string "location"
     t.integer "points"
-    t.string "code"
+    t.string "confirmation_code"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end

@@ -3,6 +3,7 @@ class CreateParticipants < ActiveRecord::Migration[6.1]
     create_table :participants do |t|
       t.belongs_to :event, foreign_key: true
       t.belongs_to :member, foreign_key: true
+      #t.boolean :confirmed_attendance
 
       t.timestamps
     end

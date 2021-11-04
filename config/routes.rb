@@ -15,7 +15,7 @@ Rails.application.routes.draw do
   root to: 'routes#home'
   get 'home', to: 'routes#home'
   get 'about', to: 'routes#about'
-  get 'gallery', to: 'routes#gallery'
+  get 'social_media', to: 'routes#social_media'
   get 'team', to: 'routes#team'
   get 'status', to: 'routes#status'
   get 'profile', to: 'members#show'

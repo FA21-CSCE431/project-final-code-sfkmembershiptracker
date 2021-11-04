@@ -7,7 +7,7 @@ class RoutesController < ApplicationController
     def about
     end
 
-    def gallery
+    def social_media
     end
 
     def team

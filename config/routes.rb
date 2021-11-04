@@ -6,10 +6,9 @@ Rails.application.routes.draw do
   end
 
   resources :participants
-  resources :payments
   resources :applications
   resources :events
-  resources :officer_positions
+  resources :positions
   resources :members
 
   root to: 'routes#home'
@@ -18,6 +17,8 @@ Rails.application.routes.draw do
   get 'gallery', to: 'routes#gallery'
   get 'team', to: 'routes#team'
   get 'status', to: 'routes#status'
+  get 'profile', to: 'members#show'
+  get 'profile/edit', to: 'members#edit'
   
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routes.html
 end

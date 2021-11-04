@@ -1,4 +1,5 @@
 class MembersController < ApplicationController
+  before_action :authenticate_user!
   before_action :set_member, only: %i[ show edit update destroy ]
 
   # GET /members or /members.json
@@ -59,11 +60,11 @@ class MembersController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_member
-      @member = Member.find(params[:id])
+      @member = current_user.member
     end
 
     # Only allow a list of trusted parameters through.
     def member_params
-      params.require(:member).permit(:first_name, :last_name, :email, :phone, :role, :grad_date, :points)
+      params.require(:member).permit(:email, :full_name, :phone, :position_id, :grad_date, :points, :application_id)
     end
 end

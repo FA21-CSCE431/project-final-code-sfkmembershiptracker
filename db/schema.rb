@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_10_25_074514) do
+ActiveRecord::Schema.define(version: 2021_10_25_055125) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -36,61 +36,56 @@ ActiveRecord::Schema.define(version: 2021_10_25_074514) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
-  create_table "members", force: :cascade do |t|
-    t.string "first_name"
-    t.string "last_name"
-    t.string "email"
+  create_table "members", primary_key: "email", id: :string, force: :cascade do |t|
+    t.string "full_name", null: false
     t.string "phone"
-    t.integer "role"
+    t.bigint "position_id", default: 1, null: false
     t.date "grad_date"
-    t.integer "points"
+    t.integer "points", default: 0
     t.bigint "application_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["application_id"], name: "index_members_on_application_id"
-  end
-
-  create_table "officer_positions", force: :cascade do |t|
-    t.string "role"
-    t.bigint "member_id"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["member_id"], name: "index_officer_positions_on_member_id"
+    t.index ["position_id"], name: "index_members_on_position_id"
   end
 
   create_table "participants", force: :cascade do |t|
     t.bigint "event_id"
-    t.bigint "member_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["event_id"], name: "index_participants_on_event_id"
-    t.index ["member_id"], name: "index_participants_on_member_id"
   end
 
   create_table "payments", force: :cascade do |t|
-    t.bigint "member_id"
     t.date "date"
     t.decimal "amount"
     t.string "description"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["member_id"], name: "index_payments_on_member_id"
   end
 
-  create_table "users", force: :cascade do |t|
-    t.string "email", null: false
+  create_table "positions", force: :cascade do |t|
+    t.string "role", null: false
+    t.boolean "can_change_positions", default: false, null: false
+    t.boolean "can_change_events", default: false, null: false
+    t.boolean "can_change_roster", default: false, null: false
+    t.boolean "can_change_payments", default: false, null: false
+    t.boolean "member", default: true, null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "users", primary_key: "email", id: :string, force: :cascade do |t|
     t.string "full_name"
     t.string "uid"
     t.string "avatar_url"
     t.datetime "remember_created_at"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["email"], name: "index_users_on_email", unique: true
   end
 
   add_foreign_key "members", "applications"
-  add_foreign_key "officer_positions", "members"
+  add_foreign_key "members", "positions"
+  add_foreign_key "members", "users", column: "email", primary_key: "email"
   add_foreign_key "participants", "events"
-  add_foreign_key "participants", "members"
-  add_foreign_key "payments", "members"
 end

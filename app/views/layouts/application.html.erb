@@ -6,17 +6,41 @@
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
-    <%# <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %> %>
-    <%# <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
     <%= stylesheet_link_tag "application" %>
   </head>
 
   <body>
     <%= render "layouts/nav" %>
+    <div class="container fixed flex justify-center mx-auto mt-1">
+      <% flash.each do |type, msg| %>
+        <% if (type == 'notice') %>
+          <p class="notice inline-block bg-green-400 bg-opacity-75 p-4 rounded animate-fade"><%= notice %></p>
+        <% else %>
+          <p class="alert inline-block bg-red-400 bg-opacity-75 p-4 rounded animate-fade"><%= alert %></p>
+        <% end %>
+      <% end %>
+    </div>
     <main class="container mx-auto my-20 px-20">
-      <p class="notice"><%= notice %></p>
-      <p class="alert"><%= alert %></p>
       <%= yield %>
     </main>
+    <script>
+      // Navbar toggle functionality
+      function toggleNav() {
+          const open = document.getElementById('navbar-open');
+          const close = document.getElementById('navbar-close');
+
+          open.classList.toggle('hidden');
+          close.classList.toggle('hidden');
+
+          const nav = document.querySelector('#links');
+          nav.classList.toggle('hidden');
+      }
+
+      // Initial actions after page loads
+      window.onload = () => {
+          document.getElementById('navbar-open').addEventListener('click', toggleNav);
+          document.getElementById('navbar-close').addEventListener('click', toggleNav);
+      };
+    </script>
   </body>
 </html>

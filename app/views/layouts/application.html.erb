@@ -11,9 +11,16 @@
 
   <body>
     <%= render "layouts/nav" %>
+    <div class="container fixed flex justify-center mx-auto mt-1">
+      <% flash.each do |type, msg| %>
+        <% if (type == 'notice') %>
+          <p class="notice inline-block bg-green-400 bg-opacity-75 p-4 rounded animate-fade"><%= notice %></p>
+        <% else %>
+          <p class="alert inline-block bg-red-400 bg-opacity-75 p-4 rounded animate-fade"><%= alert %></p>
+        <% end %>
+      <% end %>
+    </div>
     <main class="container mx-auto my-20 px-20">
-      <p class="notice"><%= notice %></p>
-      <p class="alert"><%= alert %></p>
       <%= yield %>
     </main>
     <script>

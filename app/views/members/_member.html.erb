@@ -1,12 +1,7 @@
 <div id="<%= dom_id member %>">
   <p class="my-5">
     <strong class="block font-medium mb-1">First name:</strong>
-    <%= member.first_name %>
-  </p>
-
-  <p class="my-5">
-    <strong class="block font-medium mb-1">Last name:</strong>
-    <%= member.last_name %>
+    <%= member.full_name %>
   </p>
 
   <p class="my-5">
@@ -21,7 +16,7 @@
 
   <p class="my-5">
     <strong class="block font-medium mb-1">Role:</strong>
-    <%= member.role %>
+    <%= member.position.role %>
   </p>
 
   <p class="my-5">

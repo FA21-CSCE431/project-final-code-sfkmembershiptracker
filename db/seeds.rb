@@ -11,3 +11,8 @@ Position.create([
     { role: 'Member' },
     { role: 'President', can_change_positions: 'true', can_change_events: 'true', can_change_roster: 'true', can_change_payments: 'true' }
 ])
+
+Member.create([
+    { email: 'sfk.website.431@gmail.com', full_name: 'Test Admin', position_id: '3' },
+    { email: 'sclark@tamu.edu', full_name: 'Steven Clark', position_id: '2' }
+])

@@ -24,12 +24,13 @@
             <%= link_to "Events", '/events', class: "block mt-4 lg:inline-block lg:mt-0 lg:ml-10 text-gray-200 hover:text-white" %>
           <% end %>
         </div>
-        <div class="text-sm">
+        <div class="text-sm flex">
           <% if user_signed_in? %>
             <%= link_to "Profile", '/profile', class: "block mt-4 lg:inline-block lg:mt-0 lg:mr-5 text-gray-200 hover:text-white" %>
             <%= link_to "Logout", destroy_user_session_path, method: :delete, class: "block mt-4 lg:inline-block lg:mt-0 text-gray-200 hover:text-white" %>
           <% else %>
-            <%= button_to "Login/Register", user_google_oauth2_omniauth_authorize_path, class: "bg-maroon border-solid cursor-pointer mt-4 lg:mt-0 text-gray-200 hover:text-white" %>
+            <%= link_to "Apply", '/apply', class: "block mt-4 lg:inline-block lg:mt-0 lg:mr-5 text-gray-200 hover:text-white" %>
+            <%= button_to "Login", user_google_oauth2_omniauth_authorize_path, class: "bg-maroon border-solid cursor-pointer mt-4 lg:mt-0 text-gray-200 hover:text-white" %>
           <% end %>
         </div>
     </div>

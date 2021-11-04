@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_10_25_074514) do
+ActiveRecord::Schema.define(version: 2021_10_25_055125) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -37,11 +37,11 @@ ActiveRecord::Schema.define(version: 2021_10_25_074514) do
   end
 
   create_table "members", primary_key: "email", id: :string, force: :cascade do |t|
-    t.string "full_name"
+    t.string "full_name", null: false
     t.string "phone"
-    t.bigint "position_id"
+    t.bigint "position_id", default: 1, null: false
     t.date "grad_date"
-    t.integer "points"
+    t.integer "points", default: 0
     t.bigint "application_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
@@ -66,27 +66,26 @@ ActiveRecord::Schema.define(version: 2021_10_25_074514) do
 
   create_table "positions", force: :cascade do |t|
     t.string "role", null: false
-    t.boolean "can_change_positions", default: false
-    t.boolean "can_change_events", default: false
-    t.boolean "can_change_roster", default: false
-    t.boolean "can_change_payments", default: false
-    t.boolean "member", default: true
+    t.boolean "can_change_positions", default: false, null: false
+    t.boolean "can_change_events", default: false, null: false
+    t.boolean "can_change_roster", default: false, null: false
+    t.boolean "can_change_payments", default: false, null: false
+    t.boolean "member", default: true, null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
 
-  create_table "users", force: :cascade do |t|
-    t.string "email", null: false
+  create_table "users", primary_key: "email", id: :string, force: :cascade do |t|
     t.string "full_name"
     t.string "uid"
     t.string "avatar_url"
     t.datetime "remember_created_at"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["email"], name: "index_users_on_email", unique: true
   end
 
   add_foreign_key "members", "applications"
   add_foreign_key "members", "positions"
+  add_foreign_key "members", "users", column: "email", primary_key: "email"
   add_foreign_key "participants", "events"
 end

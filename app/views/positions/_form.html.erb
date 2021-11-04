@@ -1,10 +1,10 @@
-<%= form_with(model: officer_position, class: "contents") do |form| %>
-  <% if officer_position.errors.any? %>
+<%= form_with(model: position, class: "contents") do |form| %>
+  <% if position.errors.any? %>
     <div id="error_explanation" class="bg-red-50 text-red-500 px-3 py-2 font-medium rounded-lg mt-3">
-      <h2><%= pluralize(officer_position.errors.count, "error") %> prohibited this officer_position from being saved:</h2>
+      <h2><%= pluralize(position.errors.count, "error") %> prohibited this position from being saved:</h2>
 
       <ul>
-        <% officer_position.errors.each do |error| %>
+        <% position.errors.each do |error| %>
           <li><%= error.full_message %></li>
         <% end %>
       </ul>

@@ -1,3 +1,6 @@
 <h1 class="text-6xl font-black">Apply Now</h1>
 <hr class="mb-10">
-<%#= render "partials/application_form" %>
+
+<% @questions.each do |q| %>
+  <%= q.question %>
+<% end %>

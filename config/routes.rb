@@ -18,7 +18,6 @@ Rails.application.routes.draw do
   get 'gallery', to: 'routes#gallery'
   get 'team', to: 'routes#team'
   get 'status', to: 'routes#status'
-  get 'apply', to: 'routes#apply'
-  
+  get 'apply', to: 'apply#q_index'
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routes.html
 end

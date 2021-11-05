@@ -11,3 +11,8 @@ Position.create([
     { role: 'Member' },
     { role: 'President', can_change_positions: 'true', can_change_events: 'true', can_change_roster: 'true', can_change_payments: 'true' }
 ])
+
+ApplicationQuestion.create([
+    { question: 'What is your name?' },
+    { question: 'What is your email?' },
+])

@@ -1,7 +1,6 @@
 class EventsController < ApplicationController
   before_action :authenticate_user!
   before_action :set_event, only: %i[ show edit update destroy ]
-
   # GET /events or /events.json
   def index
     @events = Event.all
@@ -52,7 +51,7 @@ class EventsController < ApplicationController
   def destroy
     @event.destroy
     respond_to do |format|
-      format.html { redirect_to events_url, notice: "Event was successfully destroyed." }
+      format.html { redirect_to events_url, notice: "Event was successfully deleted." }
       format.json { head :no_content }
     end
   end
@@ -65,6 +64,6 @@ class EventsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def event_params
-      params.require(:event).permit(:name, :date, :location, :points)
+      params.require(:event).permit(:name, :event_type, :date, :location, :points, :confirmation_code)
     end
 end

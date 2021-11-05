@@ -7,7 +7,6 @@ class CreateMembers < ActiveRecord::Migration[6.1]
       t.belongs_to :position, foreign_key: true
       t.date :grad_date
       t.integer :points
-      t.belongs_to :application, foreign_key: true
 
       t.timestamps
     end

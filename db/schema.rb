@@ -29,18 +29,6 @@ ActiveRecord::Schema.define(version: 2021_11_05_004426) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
-  create_table "applications", force: :cascade do |t|
-    t.string "first_name"
-    t.string "last_name"
-    t.string "email"
-    t.string "phone"
-    t.date "grad_date"
-    t.string "status"
-    t.string "question"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-  end
-
   create_table "events", force: :cascade do |t|
     t.string "name"
     t.date "date"
@@ -56,10 +44,8 @@ ActiveRecord::Schema.define(version: 2021_11_05_004426) do
     t.bigint "position_id"
     t.date "grad_date"
     t.integer "points"
-    t.bigint "application_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["application_id"], name: "index_members_on_application_id"
     t.index ["position_id"], name: "index_members_on_position_id"
   end
 
@@ -100,7 +86,6 @@ ActiveRecord::Schema.define(version: 2021_11_05_004426) do
     t.index ["email"], name: "index_users_on_email", unique: true
   end
 
-  add_foreign_key "members", "applications"
   add_foreign_key "members", "positions"
   add_foreign_key "participants", "events"
 end

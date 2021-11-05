@@ -14,5 +14,5 @@ Position.create([
 
 Member.create([
     { email: 'sfk.website.431@gmail.com', full_name: 'Test Admin', position_id: '3' },
-    { email: 'sclark@tamu.edu', full_name: 'Steven Clark', position_id: '2' }
+    { email: 'kiddrock025@tamu.edu', full_name: 'Nicholas LaBombard', position_id: '2' }
 ])

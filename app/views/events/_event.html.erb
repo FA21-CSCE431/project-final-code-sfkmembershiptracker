@@ -5,6 +5,11 @@
   </p>
 
   <p class="my-5">
+    <strong class="block font-medium mb-1">Event Type:</strong>
+    <%= event.event_type %>
+  </p>
+
+  <p class="my-5">
     <strong class="block font-medium mb-1">Date:</strong>
     <%= event.date %>
   </p>
@@ -17,6 +22,11 @@
   <p class="my-5">
     <strong class="block font-medium mb-1">Points:</strong>
     <%= event.points %>
+  </p>
+
+  <p class="my-5">
+    <strong class="block font-medium mb-1">Confirmation Code:</strong>
+    <%= event.confirmation_code %>
   </p>
 
   <% if action_name != "show" %>

@@ -19,5 +19,14 @@ Rails.application.routes.draw do
   get 'team', to: 'routes#team'
   get 'status', to: 'routes#status'
   get 'apply', to: 'apply#q_index'
+
+  get 'questions', to: 'apply#q_index'
+  post 'questions', to: 'apply#q_create'
+  put 'questions/:id', to: 'apply#q_update'
+  delete 'questions/:id', to: 'apply#q_destroy'
+  
+  get 'answers', to: 'apply#a_index'
+  post 'answers', to: 'apply#a_create'
+
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routes.html
 end

@@ -1,13 +1,9 @@
-<h1 class="text-6xl font-black">Profile</h1>
+<div class="flex mb-1">
+  <h1 class="text-6xl font-black inline-block flex-grow">Profile</h1>
+  <%= link_to 'Edit', edit_member_path(@member), class: "mt-2 py-3 px-5 inline-block font-medium bg-maroon hover:bg-maroon-light rounded-lg text-white" %>
+</div>
 <hr class="mb-10">
-<div class="mx-auto md:w-2/3 w-full">
-  <div class="mx-auto">
-    <% if notice.present? %>
-      <p class="py-2 px-3 bg-green-50 mb-5 text-green-500 font-medium rounded-lg inline-block" id="notice"><%= notice %></p>
-    <% end %>
-
-    <%= render @member %>
-
-    <%= link_to 'Edit my profile', 'profile/edit', class: "mt-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
-  </div>
+<div class="md:w-2/3 w-full flex">
+  <% image_tag (@member.user.avatar_url), class: "rounded-full w-1/3 h-auto" %>
+  <%= render @member %>
 </div>

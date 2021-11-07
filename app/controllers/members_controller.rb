@@ -1,14 +1,28 @@
 class MembersController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_member, only: %i[ show edit update destroy ]
+  before_action :set_member, only: %i[ profile show edit update destroy ]
 
   # GET /members or /members.json
   def index
+    if !current_user.member.position.can_change_roster
+      redirect_to "/", alert: "You don't have permission to view the member roster."
+    end
     @members = Member.all
   end
 
   # GET /members/1 or /members/1.json
   def show
+    if !current_user.member.position.member
+      redirect_to "/status"
+    end
+  end
+
+  def profile
+    render "show"
+  end
+
+  # GET /status
+  def status
   end
 
   # GET /members/new
@@ -60,7 +74,11 @@ class MembersController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_member
-      @member = current_user.member
+      if action_name != "profile"
+        @member = Member.find(params[:email])
+      else
+        @member = current_user.member
+      end
     end
 
     # Only allow a list of trusted parameters through.

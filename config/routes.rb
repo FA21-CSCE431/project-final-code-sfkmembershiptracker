@@ -9,15 +9,16 @@ Rails.application.routes.draw do
   resources :applications
   resources :events
   resources :positions
-  resources :members
+  resources :members, param: :email, constraints: { email: /.*/ }
 
   root to: 'routes#home'
   get 'home', to: 'routes#home'
   get 'about', to: 'routes#about'
   get 'gallery', to: 'routes#gallery'
   get 'team', to: 'routes#team'
-  get 'status', to: 'routes#status'
-  get 'profile', to: 'members#show'
+  get 'dashboard', to: 'events#dashboard'
+  get 'status', to: 'members#status'
+  get 'profile', to: 'members#profile'
   get 'profile/edit', to: 'members#edit'
   
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routes.html

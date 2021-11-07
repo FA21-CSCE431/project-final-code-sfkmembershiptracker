@@ -1,6 +1,4 @@
 class RoutesController < ApplicationController
-    before_action :authenticate_user!, only: [:status]
-
     def home
     end
 
@@ -13,7 +11,8 @@ class RoutesController < ApplicationController
     def team
     end
 
-    def status
+    def dashboard
     end
+
 end
   

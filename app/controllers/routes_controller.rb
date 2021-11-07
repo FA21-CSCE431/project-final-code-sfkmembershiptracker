@@ -11,9 +11,10 @@ class RoutesController < ApplicationController
     end
 
     def team
+      @team = Member.where("position_id = '3'")
+      @team = Member.all
     end
 
     def status
     end
 end
-  

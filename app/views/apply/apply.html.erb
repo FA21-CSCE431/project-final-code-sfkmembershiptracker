@@ -1,6 +1,24 @@
 <h1 class="text-6xl font-black">Apply Now</h1>
 <hr class="mb-10">
 
-<% @questions.each do |q| %>
-  <%= q.question %>
+<%# if false %>
+	<% @questions.each do |q| %>
+		<%= form_with url: "/answers", method: :post do |form| %>
+			<%= q.question %></br>
+			<%= form.text_field :answer %></br>
+			<%= form.label "Copy question here (temporary till we find a way to copy data): " %></br>
+			<%= form.text_field :question %></br>
+			<%= form.label "Email: " %></br>
+			<%= form.text_field :member_email %></br>
+			<%= form.submit "Save" %>
+		<% end %>
+	<% end %>
+<%# end %>
+
+<% if false %>
+	<% @answers.each do |q| %>
+			<%= q.answer %></br>
+			<%= q.question %></br>
+			<%= q.member_email %></br>
+	<% end %>
 <% end %>

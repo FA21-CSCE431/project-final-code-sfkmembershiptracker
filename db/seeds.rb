@@ -12,7 +12,10 @@ Position.create([
     { role: 'President', can_change_positions: 'true', can_change_events: 'true', can_change_roster: 'true', can_change_payments: 'true' }
 ])
 
+ApplicationQuestion.destroy_all
 ApplicationQuestion.create([
-    { question: 'What is your name?' },
-    { question: 'What is your email?' },
+    { question: 'Question1' },
+    { question: 'Question2' },
 ])
+
+ApplicationAnswer.destroy_all

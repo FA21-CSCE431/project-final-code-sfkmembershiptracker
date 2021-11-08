@@ -1,24 +1,21 @@
 <h1 class="text-6xl font-black">Apply Now</h1>
 <hr class="mb-10">
 
-<%# if false %>
-	<% @questions.each do |q| %>
-		<%= form_with url: "/answers", method: :post do |form| %>
-			<%= q.question %></br>
-			<%= form.text_field :answer %></br>
-			<%= form.label "Copy question here (temporary till we find a way to copy data): " %></br>
-			<%= form.text_field :question %></br>
-			<%= form.label "Email: " %></br>
-			<%= form.text_field :member_email %></br>
-			<%= form.submit "Save" %>
-		<% end %>
-	<% end %>
-<%# end %>
+<%= form_with url: "/answers", method: :post do |form| %>
+	<p>What is your email?</p>
+	<div class="border-1 px-3 py-3 bg-gray-100">
+		<%= form.text_field :email %></br>
+	</div>
 
-<% if false %>
-	<% @answers.each do |q| %>
-			<%= q.answer %></br>
-			<%= q.question %></br>
-			<%= q.member_email %></br>
+	<% @questions.each do |q, i| %>
+		<%= q.question %></br>
+		<div class="border-1 px-3 py-3 bg-gray-100">
+			<div style="display: none;">
+				<input type="textbox" name="answers[][q]" value="<%= q.question %>" >
+			</div>
+			<input type="textbox" name="answers[][a]" >
+		</div> 
 	<% end %>
+
+	<%= form.submit "Save" %>
 <% end %>

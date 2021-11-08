@@ -26,22 +26,27 @@ end
 
 # POST /answers
 def a_create
-	@answer = ApplicationAnswer.new(answer_params)
-
-    respond_to do |format|
-      if @answer.save
-        format.html { redirect_to answers_url, notice: "Answer was successfully created." }
-        format.json { render :show, status: :created, location: @answer }
-      else
-        format.html { render :new, status: :unprocessable_entity }
-        format.json { render json: @answer.errors, status: :unprocessable_entity }
+  params[:answers].each{ |ans| 
+    row = ApplicationAnswer.new(answer: ans[:a], question: ans[:q], 
+                                   member_email: params[:email])
+    if !row.save
+      respond_to do |format|
+          format.html { render :new, status: :unprocessable_entity }
+          format.json { render json: @answer.errors, status: :unprocessable_entity }
       end
+      return
     end
+  }
+
+  respond_to do |format|
+    format.html { redirect_to '/home', notice: "Answer was successfully created." }
+    format.json { render :show, status: :created, location: @answer }
+  end
 end
 
 private
 	# Only allow a list of trusted parameters through.
 	def answer_params
-		params.permit(:answer, :question, :member_email)
+		params.permit(:email, :answers)
 	end
 end

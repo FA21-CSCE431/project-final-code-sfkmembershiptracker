@@ -31,15 +31,15 @@ def a_create
                                    member_email: params[:email])
     if !row.save
       respond_to do |format|
-          format.html { render :new, status: :unprocessable_entity }
-          format.json { render json: @answer.errors, status: :unprocessable_entity }
+        format.html { redirect_to '/home', notice: "ERROR: Application not submitted!" }
+        format.json { render json: @answer.errors, status: :unprocessable_entity }
       end
       return
     end
   }
 
   respond_to do |format|
-    format.html { redirect_to '/home', notice: "Answer was successfully created." }
+    format.html { redirect_to '/home', notice: "Application was successfully submitted." }
     format.json { render :show, status: :created, location: @answer }
   end
 end

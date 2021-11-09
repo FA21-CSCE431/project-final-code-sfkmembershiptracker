@@ -9,6 +9,7 @@ class RoutesController < ApplicationController
     end
 
     def team
+        @team = Member.all
     end
 
     def dashboard

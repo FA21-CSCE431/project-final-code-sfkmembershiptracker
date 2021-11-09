@@ -20,6 +20,7 @@ Rails.application.routes.draw do
   get 'status', to: 'members#status'
   get 'profile', to: 'members#profile'
   get 'profile/edit', to: 'members#edit'
+  get 'apply', to: 'routes#apply'
   
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routes.html
 end

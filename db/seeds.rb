@@ -59,3 +59,11 @@ Member.create([
     { email: 'kiddrock025@tamu.edu', full_name: 'Nicholas LaBombard', position_id: '2' },
     { email: 'sutrisnaroy@tamu.edu', full_name: 'Sutrisna Roy', position_id: '2' },
 ])
+
+ApplicationQuestion.destroy_all
+ApplicationQuestion.create([
+    { question: 'Question1' },
+    { question: 'Question2' },
+])
+
+ApplicationAnswer.destroy_all

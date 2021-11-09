@@ -48,7 +48,7 @@ User.create([
         full_name: 'Sutrisna Roy',
         uid: '114996820190055871012',
         avatar_url: 'https://lh3.googleusercontent.com/a/AATXAJxLHnTYhAK553v6b8zf03IwcEVIzDWkqstHg3Sx=s96-c'
-    },
+    }
 ])
 
 Member.create([
@@ -57,7 +57,7 @@ Member.create([
     { email: 'lfh447@tamu.edu', full_name: 'Luis Hernandez', position_id: '2' },
     { email: 'nickbanderson@tamu.edu', full_name: 'Nicholas Anderson', position_id: '2' },
     { email: 'kiddrock025@tamu.edu', full_name: 'Nicholas LaBombard', position_id: '2' },
-    { email: 'sutrisnaroy@tamu.edu', full_name: 'Sutrisna Roy', position_id: '2' },
+    { email: 'sutrisnaroy@tamu.edu', full_name: 'Sutrisna Roy', position_id: '2' }
 ])
 
 ApplicationQuestion.destroy_all

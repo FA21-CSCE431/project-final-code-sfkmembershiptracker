@@ -1,9 +1,21 @@
-<div class="w-full">
-  <div class="flex justify-between items-center">
-    <h1 class="text-lg font-bold text-4xl">Members</h1>
-  </div>
-
-  <div id="members" class="min-w-full">
-    <%= render @members %>
-  </div>
+<h1 class="text-6xl font-black">Members</h1>
+<hr class="mb-10">
+<div id="members" class="py-8 max-w-full overflow-x-scroll">
+  <table class="bg-white">
+    <thead class="bg-maroon text-white">
+      <tr>
+        <th class="px-3 pr-4 uppercase font-semibold text-sm text-left">Name</th>
+        <th class="py-3 pr-4 uppercase font-semibold text-sm text-left">Email</th>
+        <th class="py-3 pr-4 uppercase font-semibold text-sm text-left">Phone</th>
+        <th class="py-3 pr-4 uppercase font-semibold text-sm text-left">Role</th>
+        <th class="py-3 pr-4 uppercase font-semibold text-sm text-left">Graduation Date</th>
+        <th class="py-3 pr-4 uppercase font-semibold text-sm text-left">Points</th>
+        <th></th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <%= render @members %>
+    </tbody>
+  </table>
 </div>

@@ -7,7 +7,6 @@ class CreateMembers < ActiveRecord::Migration[6.1]
       t.belongs_to :position, null: false, foreign_key: true, default: 1
       t.date :grad_date
       t.integer :points, default: 0
-      t.belongs_to :application, foreign_key: true
 
       t.timestamps
     end

@@ -6,27 +6,21 @@ Rails.application.routes.draw do
   end
 
   resources :participants
-  resources :payments
   resources :applications
   resources :events
-  resources :officer_positions
-  resources :members
+  resources :positions
+  resources :members, param: :email, constraints: { email: /.*/ }
 
   root to: 'routes#home'
   get 'home', to: 'routes#home'
   get 'about', to: 'routes#about'
-  get 'gallery', to: 'routes#gallery'
+  get 'social_media', to: 'routes#social_media'
   get 'team', to: 'routes#team'
-  get 'status', to: 'routes#status'
-  get 'apply', to: 'apply#q_index'
-
-  get 'questions', to: 'apply#q_index'
-  post 'questions', to: 'apply#q_create'
-  put 'questions/:id', to: 'apply#q_update'
-  delete 'questions/:id', to: 'apply#q_destroy'
+  get 'dashboard', to: 'events#dashboard'
+  get 'status', to: 'members#status'
+  get 'profile', to: 'members#profile'
+  get 'profile/edit', to: 'members#edit'
+  get 'apply', to: 'routes#apply'
   
-  get 'answers', to: 'apply#a_index'
-  post 'answers', to: 'apply#a_create'
-
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routes.html
 end

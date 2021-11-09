@@ -1,19 +1,18 @@
 class RoutesController < ApplicationController
-    before_action :authenticate_user!, only: [:status]
-
     def home
     end
 
     def about
     end
 
-    def gallery
+    def social_media
     end
 
     def team
     end
 
-    def status
+    def dashboard
     end
+
 end
   

@@ -62,8 +62,8 @@ Member.create([
 
 ApplicationQuestion.destroy_all
 ApplicationQuestion.create([
-    { question: 'Question1' },
-    { question: 'Question2' },
+    { question: 'What is your name?' },
+    { question: 'What is your favorite color?' },
 ])
 
 ApplicationAnswer.destroy_all

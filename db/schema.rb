@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_10_25_055125) do
+ActiveRecord::Schema.define(version: 2021_11_05_004426) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -46,7 +46,6 @@ ActiveRecord::Schema.define(version: 2021_10_25_055125) do
     t.bigint "position_id", default: 1, null: false
     t.date "grad_date"
     t.integer "points", default: 0
-    t.bigint "application_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["position_id"], name: "index_members_on_position_id"
@@ -55,6 +54,7 @@ ActiveRecord::Schema.define(version: 2021_10_25_055125) do
   create_table "participants", force: :cascade do |t|
     t.bigint "events_id"
     t.string "member_email"
+    t.boolean "attended", default: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["events_id"], name: "index_participants_on_events_id"

@@ -7,4 +7,7 @@ class Event < ApplicationRecord
   validates :location, presence:true
   validates :points, presence:true
   validates :confirmation_code, presence:true
+
+  has_many :participants
+  has_many :members
 end

@@ -24,10 +24,12 @@
     <%= event.points %>
   </p>
 
-  <p class="my-5">
-    <strong class="block font-medium mb-1">Confirmation Code:</strong>
-    <%= event.confirmation_code %>
-  </p>
+  <% if current_user.member.position_id == 3 %>
+    <p class="my-5">
+      <strong class="block font-medium mb-1">Confirmation Code:</strong>
+      <%= event.confirmation_code %>
+    </p>
+  <% end %>
 
   <% if action_name != "show" %>
     <%= link_to "Show this event", event, class: "rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>

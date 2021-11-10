@@ -1,69 +1,24 @@
 class ParticipantsController < ApplicationController
-  before_action :set_participant, only: %i[ show edit update destroy ]
 
-  # GET /participants or /participants.json
-  def index
-    @participants = Participant.all
+  def participation_index
+    @participation = Event.all
   end
 
-  # GET /participants/1 or /participants/1.json
-  def show
+  def participation_create
+    @participantion = Participant.new(participation_params)
   end
 
-  # GET /participants/new
-  def new
-    @participant = Participant.new
+  def participation_update
   end
 
-  # GET /participants/1/edit
-  def edit
+  def participation_destroy
   end
 
-  # POST /participants or /participants.json
-  def create
-    @participant = Participant.new(participant_params)
 
-    respond_to do |format|
-      if @participant.save
-        format.html { redirect_to @participant, notice: "Participant was successfully created." }
-        format.json { render :show, status: :created, location: @participant }
-      else
-        format.html { render :new, status: :unprocessable_entity }
-        format.json { render json: @participant.errors, status: :unprocessable_entity }
-      end
-    end
-  end
-
-  # PATCH/PUT /participants/1 or /participants/1.json
-  def update
-    respond_to do |format|
-      if @participant.update(participant_params)
-        format.html { redirect_to @participant, notice: "Participant was successfully updated." }
-        format.json { render :show, status: :ok, location: @participant }
-      else
-        format.html { render :edit, status: :unprocessable_entity }
-        format.json { render json: @participant.errors, status: :unprocessable_entity }
-      end
-    end
-  end
-
-  # DELETE /participants/1 or /participants/1.json
-  def destroy
-    @participant.destroy
-    respond_to do |format|
-      format.html { redirect_to participants_url, notice: "Participant was successfully destroyed." }
-      format.json { head :no_content }
-    end
-  end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_participant
-      @participant = Participant.find(params[:id])
+    def participation_params
+      params.permit(:event_id, :member_email)
     end
 
-    # Only allow a list of trusted parameters through.
-    def participant_params
-      params.require(:participant).permit(:event_id, :member_id)
-    end
 end

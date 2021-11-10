@@ -56,6 +56,21 @@ class EventsController < ApplicationController
     end
   end
 
+  def signup
+    participant = Participant.new(params[:event_id, :member_email])
+    if participant.save
+      if user_signed_in?
+        if @event.confirmation_code == user_input
+          current_user.member.points = current_user.member.points + @event.points
+        end
+      end
+    end
+    #event = Event.find_by(confirmation_code: params[:confirmation_code]])
+    #if event.present?
+    #    current_user.member.points = current_user.member.points + @event.points
+  end
+
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_event

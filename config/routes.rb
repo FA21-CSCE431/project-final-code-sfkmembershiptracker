@@ -10,6 +10,8 @@ Rails.application.routes.draw do
   resources :events
   resources :positions
   resources :members
+  resources :contact_form, only: [:contact_us, :create]
+  #resources :contact_form
 
   root to: 'routes#home'
   get 'home', to: 'routes#home'
@@ -19,6 +21,8 @@ Rails.application.routes.draw do
   get 'status', to: 'routes#status'
   get 'profile', to: 'members#show'
   get 'profile/edit', to: 'members#edit'
+  get 'contact', to: 'contact_form#index'
+  post 'contact', to: 'contact_form#create'
   
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routes.html
 end

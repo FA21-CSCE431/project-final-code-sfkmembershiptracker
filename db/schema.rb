@@ -15,14 +15,16 @@ ActiveRecord::Schema.define(version: 2021_10_25_055125) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "applications", force: :cascade do |t|
-    t.string "first_name"
-    t.string "last_name"
-    t.string "email"
-    t.string "phone"
-    t.date "grad_date"
-    t.string "status"
-    t.string "question"
+  create_table "application_answers", force: :cascade do |t|
+    t.text "answer"
+    t.text "question"
+    t.string "member_email"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "application_questions", force: :cascade do |t|
+    t.text "question"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
@@ -47,7 +49,6 @@ ActiveRecord::Schema.define(version: 2021_10_25_055125) do
     t.bigint "application_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["application_id"], name: "index_members_on_application_id"
     t.index ["position_id"], name: "index_members_on_position_id"
   end
 
@@ -87,7 +88,6 @@ ActiveRecord::Schema.define(version: 2021_10_25_055125) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
-  add_foreign_key "members", "applications"
   add_foreign_key "members", "positions"
   add_foreign_key "members", "users", column: "email", primary_key: "email"
   add_foreign_key "participants", "members", column: "member_email", primary_key: "email"

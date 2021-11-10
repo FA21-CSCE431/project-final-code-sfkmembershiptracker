@@ -4,8 +4,8 @@ class ParticipantsController < ApplicationController
     @participation = Event.all
   end
 
-  def participation_create
-    @participantion = Participant.new(participation_params)
+  def new
+    @participantion = Participant.new
   end
 
   def participation_update

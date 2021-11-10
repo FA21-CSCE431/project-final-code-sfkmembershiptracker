@@ -43,6 +43,7 @@ ActiveRecord::Schema.define(version: 2021_11_05_004426) do
   create_table "members", primary_key: "email", id: :string, force: :cascade do |t|
     t.string "full_name", null: false
     t.string "phone"
+    t.string "bio"
     t.bigint "position_id", default: 1, null: false
     t.date "grad_date"
     t.integer "points", default: 0

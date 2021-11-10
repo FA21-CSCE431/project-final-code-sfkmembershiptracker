@@ -57,13 +57,20 @@ class EventsController < ApplicationController
   end
 
   def signup
+    puts "signup function ran"
     participant = Participant.new(params[:event_id, :member_email])
+    user_input = gets
     if participant.save
+      #right passsword
+      puts "right password"
       if user_signed_in?
         if @event.confirmation_code == user_input
           current_user.member.points = current_user.member.points + @event.points
         end
       end
+    else
+      #wrong password
+      puts "wrong password"
     end
     #event = Event.find_by(confirmation_code: params[:confirmation_code]])
     #if event.present?

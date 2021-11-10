@@ -1,21 +1,45 @@
 <h1 class="text-6xl font-black">Apply Now</h1>
 <hr class="mb-10">
 
-<%= form_with url: "/answers", method: :post do |form| %>
-	<p>What is your email?</p>
-	<div class="border-1 px-3 py-3 bg-gray-100">
-		<%= form.text_field :email %></br>
-	</div>
-
-	<% @questions.each do |q, i| %>
-		<%= q.question %></br>
+<% if false %>
+	<%= form_with url: "/answers", method: :post do |form| %>
+		<p>What is your email?</p>
 		<div class="border-1 px-3 py-3 bg-gray-100">
-			<div style="display: none;">
-				<input type="textbox" name="answers[][q]" value="<%= q.question %>" >
-			</div>
-			<input type="textbox" name="answers[][a]" >
-		</div> 
-	<% end %>
+			<%= form.text_field :email %></br>
+		</div>
 
-	<%= form.submit "Save" %>
+		<% @questions.each do |q, i| %>
+			<%= q.question %></br>
+			<div class="border-1 px-3 py-3 bg-gray-100">
+				<div style="display: none;">
+					<input type="textbox" name="answers[][q]" value="<%= q.question %>" >
+				</div>
+				<input type="textbox" name="answers[][a]" >
+			</div> 
+		<% end %>
+
+		<%= form.submit "Save" %>
+	<% end %>
 <% end %>
+
+
+<table>
+  <thead>
+    <tr>
+      <th>QUESTION</th>
+      <th colspan="2"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @questions.each do |q| %>
+      <tr>
+        <td><%= q.question %></br></td>
+				<td><%= link_to 'Edit', edit_question_path(q) %></td>
+				<td><%= link_to 'Delete', delete_question_path(q) %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<%= link_to 'New Question', new_question_path %>

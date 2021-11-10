@@ -1,0 +1,24 @@
+<%= form_with(url: questions_path, class: "contents") do |form| %>
+	
+	<% if question.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(question.errors.count, "error") %> prohibited this question from being saved:</h2>
+
+      <ul>
+        <% question.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+	
+  <div class="my-5">
+    <%= form.label :question %>
+    <%= form.text_field :question, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
+  </div>
+
+  <div class="inline">
+    <%= form.submit class: "py-3 px-5 inline-block font-medium bg-maroon hover:bg-maroon-light rounded-lg text-white cursor-pointer" %>
+  </div>
+	
+<% end %>

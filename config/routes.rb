@@ -20,7 +20,20 @@ Rails.application.routes.draw do
   get 'status', to: 'members#status'
   get 'profile', to: 'members#profile'
   get 'profile/edit', to: 'members#edit'
-  get 'apply', to: 'routes#apply'
+  get 'apply', to: 'apply#q_index'
+	
+	get 'questions', to: 'apply#q_index'
+  post 'questions', to: 'apply#q_create'
+	get 'questions/new', to: 'apply#q_new', as: 'new_question'
+  put 'questions/:id', to: 'apply#q_update'
+  delete 'questions/:id', to: 'apply#q_destroy'
+	get 'questions/:id/edit', to: 'apply#q_edit', as: 'edit_question'
+	patch 'questions/:id', to: 'apply#q_update'
+	delete 'questions/:id', to: 'apply#q_destroy', as: 'delete_question'
+	get 'questions/:id', to: 'apply#q_delete'
+  
+  get 'answers', to: 'apply#a_index'
+  post 'answers', to: 'apply#a_create'
   
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routes.html
 end

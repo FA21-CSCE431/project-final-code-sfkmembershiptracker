@@ -9,7 +9,7 @@ class RoutesController < ApplicationController
     end
 
     def team
-        @team = Member.where("position_id = 3")
+        @team = Member.where("position_id = 2")
     end
 
     def dashboard

@@ -55,7 +55,7 @@ ActiveRecord::Schema.define(version: 2021_11_05_004426) do
   create_table "participants", force: :cascade do |t|
     t.bigint "events_id"
     t.string "member_email"
-    t.boolean "attended", default: false
+    t.string "user_code"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["events_id"], name: "index_participants_on_events_id"

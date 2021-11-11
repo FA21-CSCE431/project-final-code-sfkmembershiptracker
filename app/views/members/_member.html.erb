@@ -1,37 +1,52 @@
-<div id="<%= dom_id member %>">
-  <p class="my-5">
-    <strong class="block font-medium mb-1">First name:</strong>
-    <%= member.full_name %>
-  </p>
+<% if action_name == "index" %>
+  <tr id="<%= dom_id member %>">
+    <td class="px-4"><%= member.full_name %></td>
+    <td class="pr-4"><%= member.email %></td>
+    <td class="pr-4"><%= member.phone %></td>
+    <td class="pr-4"><%= member.position.role %></td>
+    <td class="pr-4"><%= member.grad_date %></td>
+    <td class="pr-4"><%= member.points %></td>
+    <td>
+      <%= link_to "View member profile", member, class: "whitespace-nowrap py-3 px-5 inline-block font-medium bg-maroon hover:bg-maroon-light rounded-lg text-white" %>
+    </td>
+    <td>
+      <%= link_to 'Edit this member', edit_member_path(member), class: "whitespace-nowrap rounded-lg py-3 ml-2 px-5 bg-gray-100 inline-block font-medium" %>
+    </td>    
+  </tr>
+<% else %>
+  <div id="<%= dom_id member %>">
+    <p class="my-5">
+      <strong class="inline-block font-medium mb-1 mr-6">Full Name:</strong>
+      <%= member.full_name %>
+    </p>
 
-  <p class="my-5">
-    <strong class="block font-medium mb-1">Email:</strong>
-    <%= member.email %>
-  </p>
+    <p class="my-5">
+      <strong class="inline-block font-medium mb-1 mr-6">Email:</strong>
+      <%= member.email %>
+    </p>
 
-  <p class="my-5">
-    <strong class="block font-medium mb-1">Phone:</strong>
-    <%= member.phone %>
-  </p>
+    <p class="my-5">
+      <strong class="inline-block font-medium mb-1 mr-6">Phone:</strong>
+      <%= member.phone %>
+    </p>
 
-  <p class="my-5">
-    <strong class="block font-medium mb-1">Role:</strong>
-    <%= member.position.role %>
-  </p>
+    <p class="my-5">
+      <strong class="inline-block font-medium mb-1 mr-6">Role:</strong>
+      <%= member.position.role %>
+    </p>
 
-  <p class="my-5">
-    <strong class="block font-medium mb-1">Grad date:</strong>
-    <%= member.grad_date %>
-  </p>
+    <p class="my-5">
+      <strong class="inline-block font-medium mb-1 mr-6">Graduation Date:</strong>
+      <%= member.grad_date %>
+    </p>
 
-  <p class="my-5">
-    <strong class="block font-medium mb-1">Points:</strong>
-    <%= member.points %>
-  </p>
-
-  <% if action_name != "show" %>
-    <%= link_to "Show this member", member, class: "rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
-    <%= link_to 'Edit this member', edit_member_path(member), class: "rounded-lg py-3 ml-2 px-5 bg-gray-100 inline-block font-medium" %>
-    <hr class="mt-6">
-  <% end %>
-</div>
+    <p class="my-5">
+      <strong class="inline-block font-medium mb-1 mr-6">Points:</strong>
+      <%= member.points %>
+    </p>
+    <% if action_name != "show" && action_name != "profile" %>
+      <%= link_to "View member profile", member, class: "py-3 px-5 inline-block font-medium bg-maroon hover:bg-maroon-light rounded-lg text-white" %>
+      <%= link_to 'Edit this member', edit_member_path(member), class: "rounded-lg py-3 ml-2 px-5 bg-gray-100 inline-block font-medium" %>
+    <% end %>
+  </div>
+<% end %>

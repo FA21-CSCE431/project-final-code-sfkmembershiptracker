@@ -17,6 +17,11 @@
   </div>
 
   <div class="my-5">
+    <%= form.label :event_type %>
+    <%= form.select :event_type, [['Meeting', 'Meeting'], ['Snack/Chalk', 'Snack/Chalk'], ['Intramural', 'Intramural'], ['Friend/Fundraiser', 'Friend/Fundraiser'], ['SFK Socials', 'SFK Socials'], ['Committee Socials', 'Committee Socials'], ['Mandatory Event', 'Mandatory Event'], ['Sports Fest Prep', 'Sports Fest Prep']], class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
+  </div>
+
+  <div class="my-5">
     <%= form.label :date %>
     <%= form.date_select :date, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
   </div>
@@ -28,7 +33,12 @@
 
   <div class="my-5">
     <%= form.label :points %>
-    <%= form.text_field :points, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
+    <%= form.select :points, [[0, 0], [1, 1], [2, 2], [3, 3]], class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
+  </div>
+
+  <div class="my-5">
+    <%= form.label :confirmation_code %>
+    <%= form.text_field :confirmation_code , class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
   </div>
 
   <div class="inline">

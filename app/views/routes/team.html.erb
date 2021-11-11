@@ -1,2 +1,17 @@
 <h1 class="text-6xl font-black">Our Team</h1>
 <hr class="mb-10">
+
+<div id= "team" class "min-w-full">
+<table>
+    <tr>
+        <th> Name </th>
+        <th> Graduation Date </th>
+        <th> Role </th>
+    </tr>
+    <% @team.each do |teammate| %>
+    <tr>
+        <td><%= teammate.full_name%></td>
+        <td><%= teammate.grad_date%></td>
+    </tr>
+    <% end %>
+</div>

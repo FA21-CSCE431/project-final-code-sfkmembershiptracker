@@ -1,6 +1,6 @@
 <h1 class="text-6xl font-black">Admin Dashboard</h1>
 <hr class="mb-10">
-<div class="flex">
+<div class="flex-col">
     <div>
         <h2 class="text-2xl mb-3">Applicants</h2>
         <% @applications.each do |email, app| %>
@@ -21,8 +21,27 @@
                     <%= f.submit "Accept", :class => 'nice-btn' %>
                     <%= f.submit "Reject", :class => 'nice-btn' %>
                 <% end %>
+                </form>
             </div>
         <% end %>
+    </div>
+
+    <br><br>
+
     <div>
+        <h2 class="text-2xl mb-3">Edit Application Questions</h2>
+        <table>
+        <tbody>
+            <% @questions.each do |q| %>
+            <tr>
+                <td><%= q.question %></br></td>
+                    <td><%= link_to 'Edit', edit_question_path(q) %></td>
+                    <td><%= link_to 'Delete', delete_question_path(q) %></td>
+            </tr>
+            <% end %>
+        </tbody>
+        </table>
+	    <%= link_to 'New Question', new_question_path %>
+    </div
 
 </div>

@@ -27,24 +27,27 @@
 
 	<%= form.submit "Save" %>
 <% end %>
-<br><br>
-<table>
-  <thead>
-    <tr>
-      <th>QUESTION</th>
-      <th colspan="2"></th>
-    </tr>
-  </thead>
 
-  <tbody>
-    <% @questions.each do |q| %>
-      <tr>
-        <td><%= q.question %></br></td>
-				<td><%= link_to 'Edit', edit_question_path(q) %></td>
-				<td><%= link_to 'Delete', delete_question_path(q) %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+<!--
+	<br><br>
+	<table>
+  	<thead>
+    	<tr>
+      	<th>QUESTION</th>
+      	<th colspan="2"></th>
+    	</tr>
+  	</thead>
 
-<%= link_to 'New Question', new_question_path %>
+  	<tbody>
+    	<% @questions.each do |q| %>
+      	<tr>
+        	<td><%= q.question %></br></td>
+					<td><%= link_to 'Edit', edit_question_path(q) %></td>
+					<td><%= link_to 'Delete', delete_question_path(q) %></td>
+      	</tr>
+    	<% end %>
+  	</tbody>
+	</table>
+
+	<%= link_to 'New Question', new_question_path %>
+-->

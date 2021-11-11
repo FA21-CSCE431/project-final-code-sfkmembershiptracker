@@ -27,17 +27,18 @@ class EventsController < ApplicationController
   end
 
   def act_on_applicant
-    if params[:commit] == 'Reject'
-      # delete ApplicationAnswer entries
-      redirect_to '/dashboard'
-    elsif params[:commit] == 'Accept' 
-      # create Member entry
-      answers = ApplicationAnswer.where({member_email: params[:email]})
-      if answers.size == 0
-        raise "Accepting applicant, but applicant has no application answers"
-      end
+    answers = ApplicationAnswer.where({member_email: params[:email]})
+    if answers.size == 0
+      raise "Acting on applicant, but applicant has no application answers"
+    end
 
-      answers.each{ |a| puts a[:answer] }
+    if params[:commit] == 'Reject'
+      if !answers.destroy_all
+        redirect_to '/dashboard', notice: "ERROR: Couldn't delete application!"
+      else
+        redirect_to '/dashboard', notice: "Success! Applicant denied."
+      end
+    elsif params[:commit] == 'Accept' 
       new_member = Member.new({
         email: params[:email],
         full_name: answers.find{|a| a[:question] == "What is your full name?"},
@@ -45,10 +46,16 @@ class EventsController < ApplicationController
         grad_date: answers.find{|a| a[:question] == "Which semester and year do you expect to graduate?"},
         position_id: 2, # member
       })
+
+      # try to save Member and delete ApplicationAnswers
       if !new_member.save
-        redirect_to '/dashboard', notice: "ERROR: Application action failed!"
+        redirect_to '/dashboard', notice: "ERROR: Member creation failed!"
       else
-        redirect_to '/dashboard', notice: "Success! Member added."
+        if !answers.destroy_all
+          redirect_to '/dashboard', notice: "ERROR: Couldn't delete application!"
+        else
+          redirect_to '/dashboard', notice: "Success! Member added."
+        end
       end
     else
       raise "unreachable: events#act_on_applicant"

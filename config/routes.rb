@@ -10,7 +10,6 @@ Rails.application.routes.draw do
   resources :events
   resources :positions
   resources :members, param: :email, constraints: { email: /.*/ }
-  resources :contact_form, only: [:contact_us, :create]
 
   root to: 'routes#home'
   get 'home', to: 'routes#home'
@@ -30,9 +29,6 @@ Rails.application.routes.draw do
   
   get 'answers', to: 'apply#a_index'
   post 'answers', to: 'apply#a_create'
-  
-  get 'contact', to: 'contact_form#index'
-  post 'contact', to: 'contact_form#create'
   
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routes.html
 end

@@ -7,7 +7,7 @@ class CreateEvents < ActiveRecord::Migration[6.1]
       t.string :location
       t.integer :points
       t.string :confirmation_code
-      
+
       t.timestamps
     end
   end

@@ -11,7 +11,7 @@
     </td>
     <td>
       <%= link_to 'Edit this member', edit_member_path(member), class: "whitespace-nowrap rounded-lg py-3 ml-2 px-5 bg-gray-100 inline-block font-medium" %>
-    </td>    
+    </td>
   </tr>
 <% else %>
   <div id="<%= dom_id member %>">
@@ -28,6 +28,11 @@
     <p class="my-5">
       <strong class="inline-block font-medium mb-1 mr-6">Phone:</strong>
       <%= member.phone %>
+    </p>
+
+    <p class="my-5">
+      <strong class="inline-block font-medium mb-1 mr-6">Bio:</strong>
+      <%= member.bio %>
     </p>
 
     <p class="my-5">

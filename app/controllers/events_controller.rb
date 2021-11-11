@@ -69,7 +69,6 @@ class EventsController < ApplicationController
         end
       end
     else
-      #wrong password
       puts "wrong password"
     end
     #event = Event.find_by(confirmation_code: params[:confirmation_code]])

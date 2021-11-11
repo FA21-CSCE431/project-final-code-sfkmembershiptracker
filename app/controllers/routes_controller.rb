@@ -10,7 +10,6 @@ class RoutesController < ApplicationController
 
     def team
         @team = Member.where("position_id = 3")
-        @team = Member.all
     end
 
     def dashboard

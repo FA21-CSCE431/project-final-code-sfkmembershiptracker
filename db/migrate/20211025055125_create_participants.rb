@@ -3,7 +3,7 @@ class CreateParticipants < ActiveRecord::Migration[6.1]
     create_table :participants do |t|
       t.belongs_to :events
       t.string :member_email
-      t.boolean :attended, default: 'false'
+      t.string :user_code
 
       t.timestamps
     end

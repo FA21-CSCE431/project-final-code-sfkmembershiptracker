@@ -10,15 +10,20 @@ Rails.application.routes.draw do
   resources :events
   resources :positions
   resources :members, param: :email, constraints: { email: /.*/ }
+  resources :contact_form, only: [:contact_us, :create]
 
   root to: 'routes#home'
   get 'home', to: 'routes#home'
   get 'about', to: 'routes#about'
-  get 'social_media', to: 'routes#social_media'
   get 'team', to: 'routes#team'
+  get 'social_media', to: 'routes#social_media'
+  get 'contact', to: 'contact_form#index'
+  post 'contact', to: 'contact_form#create'
+
   get 'dashboard', to: 'events#dashboard'
   get 'dashboard/applicant', to: 'events#act_on_applicant'
   get 'status', to: 'members#status'
+  delete 'members/:id', to: 'members#destroy'
   get 'profile', to: 'members#profile'
   get 'profile/edit', to: 'members#edit'
   get 'apply', to: 'apply#q_index'

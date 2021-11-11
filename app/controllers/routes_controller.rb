@@ -9,10 +9,10 @@ class RoutesController < ApplicationController
     end
 
     def team
+        @team = Member.joins(:position).where('position.officer' => true).order(position: :desc)
     end
 
     def dashboard
     end
 
 end
-  

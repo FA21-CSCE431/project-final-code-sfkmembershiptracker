@@ -67,6 +67,18 @@ end
 
 # POST /answers
 def a_create
+	new_member = Member.new({
+		email: params[:email],
+		full_name: params[:answers].find{|a| a[:q] == "What is your full name?"}[:a],
+		phone: params[:answers].find{|a| a[:q] == "What is your phone number?"}[:a],
+		grad_date: params[:answers].find{|a| a[:q] == "Which semester and year do you expect to graduate?"}[:a],
+		position_id: 1, # applicant
+	})
+
+	if !new_member.save
+		raise "New member not saved!"
+	end
+
   params[:answers].each{ |ans| 
     row = ApplicationAnswer.new(answer: ans[:a], question: ans[:q], 
                                    member_email: params[:email])

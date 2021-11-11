@@ -7,5 +7,6 @@ class CreateApplicationAnswers < ActiveRecord::Migration[6.1]
 
       t.timestamps
     end
+    add_foreign_key :application_answers, :members, column: :member_email, primary_key: "email"
   end
 end

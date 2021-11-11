@@ -71,8 +71,8 @@ ActiveRecord::Schema.define(version: 2021_11_05_004426) do
     t.boolean "can_change_positions", default: false, null: false
     t.boolean "can_change_events", default: false, null: false
     t.boolean "can_change_roster", default: false, null: false
-    t.boolean "can_change_payments", default: false, null: false
     t.boolean "member", default: true, null: false
+    t.boolean "officer", default: false, null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
@@ -86,6 +86,7 @@ ActiveRecord::Schema.define(version: 2021_11_05_004426) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  add_foreign_key "application_answers", "members", column: "member_email", primary_key: "email"
   add_foreign_key "members", "positions"
   add_foreign_key "members", "users", column: "email", primary_key: "email"
   add_foreign_key "participants", "events"

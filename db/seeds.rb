@@ -69,6 +69,7 @@ Member.create([
 ])
 
 ApplicationQuestion.create([
-    { question: 'What is your name?' },
-    { question: 'What is your favorite color?' },
+    { question: 'What is your full name?' },
+    { question: 'What is your phone number?' },
+    { question: 'Which semester and year do you expect to graduate?' },
 ])

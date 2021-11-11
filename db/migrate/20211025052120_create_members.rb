@@ -6,7 +6,7 @@ class CreateMembers < ActiveRecord::Migration[6.1]
       t.string :phone
       t.string :bio
       t.belongs_to :position, null: false, foreign_key: true, default: 1
-      t.date :grad_date
+      t.string :grad_date
       t.integer :points, default: 0
 
       t.timestamps

@@ -21,17 +21,23 @@ Rails.application.routes.draw do
   post 'contact', to: 'contact_form#create'
 
   get 'dashboard', to: 'events#dashboard'
-
+  get 'dashboard/applicant', to: 'events#act_on_applicant'
   get 'status', to: 'members#status'
   delete 'members/:id', to: 'members#destroy'
   get 'profile', to: 'members#profile'
   get 'profile/edit', to: 'members#edit'
-
   get 'apply', to: 'apply#q_index'
-  get 'questions', to: 'apply#q_index'
-  post 'questions', to: 'apply#q_create'
-  put 'questions/:id', to: 'apply#q_update'
-  delete 'questions/:id', to: 'apply#q_destroy'
+	
+	get 'questions', to: 'events#q_index'
+  post 'questions', to: 'events#q_create'
+	get 'questions/new', to: 'events#q_new', as: 'new_question'
+  put 'questions/:id', to: 'events#q_update'
+  delete 'questions/:id', to: 'events#q_destroy'
+	get 'questions/:id/edit', to: 'events#q_edit', as: 'edit_question'
+	patch 'questions/:id', to: 'events#q_update'
+	delete 'questions/:id', to: 'events#q_destroy', as: 'delete_question'
+	get 'questions/:id', to: 'events#q_delete'
+  
   get 'answers', to: 'apply#a_index'
   post 'answers', to: 'apply#a_create'
   

@@ -45,7 +45,7 @@ ActiveRecord::Schema.define(version: 2021_11_05_004426) do
     t.string "phone"
     t.string "bio"
     t.bigint "position_id", default: 1, null: false
-    t.date "grad_date"
+    t.string "grad_date"
     t.integer "points", default: 0
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false

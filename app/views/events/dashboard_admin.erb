@@ -1,0 +1,47 @@
+<h1 class="text-6xl font-black">Admin Dashboard</h1>
+<hr class="mb-10">
+<div class="flex-col">
+    <div>
+        <h2 class="text-2xl mb-3">Applicants</h2>
+        <% @applications.each do |email, app| %>
+            <div class="bg-gray-100 mb-5 p-3">
+                <form action="/dashboard/applicant" >
+                <%= form_with url: "/dashboard/applicant" do |f| %>
+                    <p>Email: <%= email %></p>
+                    <% app.each do |response| %>
+                        <br>
+                        <p>Q: <%= response[:question] %></p>
+                        <p>A: <%= response[:answer] %></p>
+                    <% end %>
+                    <br>
+
+			        <div style="display: none;">
+				        <input type="textbox" name="email" value="<%= email %>" >
+			        </div>
+                    <%= f.submit "Accept", :class => 'nice-btn' %>
+                    <%= f.submit "Reject", :class => 'nice-btn' %>
+                <% end %>
+                </form>
+            </div>
+        <% end %>
+    </div>
+
+    <br><br>
+
+    <div>
+        <h2 class="text-2xl mb-3">Edit Application Questions</h2>
+        <table>
+        <tbody>
+            <% @questions.each do |q| %>
+            <tr>
+                <td><%= q.question %></br></td>
+                    <td><%= link_to 'Edit', edit_question_path(q) %></td>
+                    <td><%= link_to 'Delete', delete_question_path(q) %></td>
+            </tr>
+            <% end %>
+        </tbody>
+        </table>
+	    <%= link_to 'New Question', new_question_path %>
+    </div
+
+</div>

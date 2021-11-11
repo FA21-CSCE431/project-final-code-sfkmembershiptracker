@@ -35,7 +35,8 @@
 
   <div class="my-5">
     <%= form.label :grad_date %>
-    <%= form.date_select :grad_date, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
+    <%# <%= form.date_select :grad_date, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
+    <%= form.text_field :grad_date, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
   </div>
 
   <% if current_user.member.position.can_change_roster? %>

@@ -19,7 +19,11 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
     end
   
     def after_sign_in_path_for(resource_or_scope)
-      stored_location_for(resource_or_scope) || root_path
+      if current_user.member.present?
+        stored_location_for(resource_or_scope) || root_path
+      else
+        apply_path
+      end
     end
   
     private

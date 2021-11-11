@@ -9,7 +9,7 @@
 Position.create([
     { role: 'Applicant', member: false },
     { role: 'Member' },
-    { role: 'President', can_change_positions: 'true', can_change_events: 'true', can_change_roster: 'true', can_change_payments: 'true' },
+    { role: 'President', can_change_positions: 'true', can_change_events: 'true', can_change_roster: 'true', can_change_payments: 'true', is_admin: true },
 ])
 
 User.create([
@@ -62,8 +62,9 @@ Member.create([
 
 ApplicationQuestion.destroy_all
 ApplicationQuestion.create([
-    { question: 'Question1' },
-    { question: 'Question2' },
+    { question: 'What is your full name?' },
+    { question: 'What is your phone number?' },
+    { question: 'Which semester and year do you expect to graduate?' },
 ])
 
 ApplicationAnswer.destroy_all

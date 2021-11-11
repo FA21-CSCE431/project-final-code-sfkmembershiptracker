@@ -14,13 +14,13 @@ Position.create([
 
 User.create([
     {
-        email: 'sfk.website.431@gmail.com', 
+        email: 'sfk.website.431@gmail.com',
         full_name: 'Sports For Kids Admin',
         uid: '102204533502419280226',
         avatar_url: 'https://lh3.googleusercontent.com/a/AATXAJzAzbh_7qALHCCDG8iqnA1b0hikmOKL7TmsIhOP=s96-c'
     },
     {
-        email: 'sclark@tamu.edu', 
+        email: 'sclark@tamu.edu',
         full_name: 'Steven Clark',
         uid: '117000275485057102157',
         avatar_url: 'https://lh3.googleusercontent.com/a-/AOh14Ghdo_SG5FBV75pKSdSwOs1iiDEv1EYm56Mi57SY=s96-c'
@@ -41,10 +41,10 @@ User.create([
         email: 'kiddrock025@tamu.edu',
         full_name: 'Nicholas LaBombard',
         uid: '117163153697784923471',
-        avatar_url: ''
+        avatar_url: 'https://lh3.googleusercontent.com/a/AATXAJw9rp4zQCcUFbCNWPtiWdILj23QYrwqaG1Mrci1=s96-c'
     },
     {
-        email: 'sutrisnaroy@tamu.edu', 
+        email: 'sutrisnaroy@tamu.edu',
         full_name: 'Sutrisna Roy',
         uid: '114996820190055871012',
         avatar_url: 'https://lh3.googleusercontent.com/a/AATXAJxLHnTYhAK553v6b8zf03IwcEVIzDWkqstHg3Sx=s96-c'

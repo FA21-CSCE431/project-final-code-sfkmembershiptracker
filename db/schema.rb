@@ -43,6 +43,7 @@ ActiveRecord::Schema.define(version: 2021_11_05_004426) do
   create_table "members", primary_key: "email", id: :string, force: :cascade do |t|
     t.string "full_name", null: false
     t.string "phone"
+    t.string "bio"
     t.bigint "position_id", default: 1, null: false
     t.date "grad_date"
     t.integer "points", default: 0
@@ -52,10 +53,12 @@ ActiveRecord::Schema.define(version: 2021_11_05_004426) do
   end
 
   create_table "participants", force: :cascade do |t|
-    t.bigint "event_id"
+    t.bigint "events_id"
+    t.string "member_email"
+    t.boolean "attended", default: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["event_id"], name: "index_participants_on_event_id"
+    t.index ["events_id"], name: "index_participants_on_events_id"
   end
 
   create_table "payments", force: :cascade do |t|
@@ -88,5 +91,5 @@ ActiveRecord::Schema.define(version: 2021_11_05_004426) do
 
   add_foreign_key "members", "positions"
   add_foreign_key "members", "users", column: "email", primary_key: "email"
-  add_foreign_key "participants", "events"
+  add_foreign_key "participants", "members", column: "member_email", primary_key: "email"
 end

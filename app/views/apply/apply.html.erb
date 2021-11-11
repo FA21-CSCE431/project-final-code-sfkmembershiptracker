@@ -2,20 +2,32 @@
 <hr class="mb-10">
 
 <%= form_with url: "/answers", method: :post do |form| %>
-	<p>What is your email?</p>
-	<div class="border-1 px-3 py-3 bg-gray-100">
-		<%= form.text_field :email %></br>
-	</div>
+
+  <div class="flex flex-wrap -mx-3 mb-6">
+    <div class="w-full px-3">
+      <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">
+        E-mail<span class="text-red-500">*</span>
+      </label>
+	  <%= form.text_field :email, :class =>"appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"%>
+      <%# <p class="text-red-500 text-xs italic">This field is required.</p> %>
+    </div>
+  </div>
 
 	<% @questions.each do |q, i| %>
-		<%= q.question %></br>
-		<div class="border-1 px-3 py-3 bg-gray-100">
-			<div style="display: none;">
-				<input type="textbox" name="answers[][q]" value="<%= q.question %>" >
-			</div>
-			<input type="textbox" name="answers[][a]" >
-		</div> 
+	<div class="flex flex-wrap -mx-3 mb-6">
+		<div class="w-full px-3">
+			<label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"><%= q.question %><span class="text-red-500">*</span></br>	
+				<div style="display: none;">
+					<input type="text_field" class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" name="answers[][q]" value="<%= q.question %>">
+				</div>
+			<input class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" name="answers[][a]">
+			<%# <p class="text-red-500 text-xs italic">This field is required.</p> %>
+			</label>
+		</div>
+	</div> 
 	<% end %>
 
 	<%= form.submit "Save" %>
+
+
 <% end %>

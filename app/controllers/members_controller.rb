@@ -1,6 +1,6 @@
 class MembersController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_member, only: %i[ profile show edit update destroy ]
+  before_action :set_member, only: %i[ profile status show edit update destroy ]
 
   # GET /members or /members.json
   def index
@@ -18,7 +18,11 @@ class MembersController < ApplicationController
   end
 
   def profile
-    render "show"
+    if !current_user.member.position.member
+      redirect_to "/status"
+    else
+      render "show"
+    end
   end
 
   # GET /status
@@ -32,6 +36,7 @@ class MembersController < ApplicationController
 
   # GET /members/1/edit
   def edit
+    @positions = Position.all
   end
 
   # POST /members or /members.json
@@ -64,17 +69,25 @@ class MembersController < ApplicationController
 
   # DELETE /members/1 or /members/1.json
   def destroy
-    @member.destroy
-    respond_to do |format|
-      format.html { redirect_to members_url, notice: "Member was successfully destroyed." }
-      format.json { head :no_content }
+    if current_user.member == @member
+      @member.destroy
+      respond_to do |format|
+        format.html { redirect_to "/", notice: "Your application has been rescinded." }
+        format.json { head :no_content }
+      end
+    else
+      @member.destroy
+      respond_to do |format|
+        format.html { redirect_to members_url, notice: "Member was successfully destroyed." }
+        format.json { head :no_content }
+      end
     end
   end
 
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_member
-      if action_name != "profile"
+      if action_name != "profile" && action_name != "status"
         @member = Member.find(params[:email])
       else
         @member = current_user.member

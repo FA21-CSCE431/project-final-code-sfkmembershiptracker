@@ -29,7 +29,7 @@
   <% if current_user.member.position.can_change_positions? %>
     <div class="my-5">
       <%= form.label :role %>
-      <%= form.text_field :role, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
+      <%= form.select :position_id, @positions.collect {|p| [ p.role, p.id ] }, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
     </div>
   <% end %>
 

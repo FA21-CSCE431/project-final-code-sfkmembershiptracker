@@ -6,10 +6,24 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
+ApplicationQuestion.destroy_all
+ApplicationAnswer.destroy_all
+Member.destroy_all
+User.destroy_all
+Position.destroy_all
+
 Position.create([
     { role: 'Applicant', member: false },
     { role: 'Member' },
-    { role: 'President', can_change_positions: 'true', can_change_events: 'true', can_change_roster: 'true', can_change_payments: 'true' },
+    { role: 'Sports Saturday Executive', can_change_events: 'true', officer: 'true' },
+    { role: 'Sports Fest Executive', can_change_events: 'true', officer: 'true' },
+    { role: 'Socials Executive', can_change_events: 'true', officer: 'true' },
+    { role: 'Show & Tell Executive', can_change_events: 'true', officer: 'true' },
+    { role: 'Intramurals Executive', can_change_events: 'true', officer: 'true' },
+    { role: 'Fundraising/Outreach Executive', can_change_events: 'true', officer: 'true' },
+    { role: 'Boys & Girls Club Executive', can_change_events: 'true', officer: 'true' },
+    { role: 'Financial Co-Chair', officer: 'true' },
+    { role: 'Managerial Co-Chair', can_change_positions: 'true', can_change_events: 'true', can_change_roster: 'true', officer: 'true' },
 ])
 
 User.create([
@@ -52,18 +66,15 @@ User.create([
 ])
 
 Member.create([
-    { email: 'sfk.website.431@gmail.com', full_name: 'Test Admin', position_id: '3' },
-    { email: 'sclark@tamu.edu', full_name: 'Steven Clark', position_id: '2' },
+    { email: 'sfk.website.431@gmail.com', full_name: 'Test Admin', position_id: '11' },
+    { email: 'sclark@tamu.edu', full_name: 'Steven Clark', position_id: '1' },
     { email: 'lfh447@tamu.edu', full_name: 'Luis Hernandez', position_id: '2' },
     { email: 'nickbanderson@tamu.edu', full_name: 'Nicholas Anderson', position_id: '2' },
     { email: 'kiddrock025@tamu.edu', full_name: 'Nicholas LaBombard', position_id: '2' },
     { email: 'sutrisnaroy@tamu.edu', full_name: 'Sutrisna Roy', position_id: '2' }
 ])
 
-ApplicationQuestion.destroy_all
 ApplicationQuestion.create([
     { question: 'What is your name?' },
     { question: 'What is your favorite color?' },
 ])
-
-ApplicationAnswer.destroy_all

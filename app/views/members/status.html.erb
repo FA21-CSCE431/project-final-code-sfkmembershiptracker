@@ -1,14 +1,12 @@
-<h1 class="text-6xl font-black">Application Status</h1>
+<div class="flex flex-col md:flex-row mb-1">
+    <h1 class="text-6xl font-black inline-block flex-grow">Application Status</h1>
+    <% if !current_user.member.position.member? %>
+        <%= button_to "Cancel My Application", @member, :method => :delete, class: "mt-2 py-3 px-5 inline-block font-medium bg-maroon hover:bg-maroon-light rounded-lg text-white cursor-pointer" %>
+    <% end %>
+</div>
 <hr class="mb-10">
 <% if current_user.member.position.member? %>
-    </p>Congratulations, your application has been approved! Welcome to Sports For Kids!</p>
+    </p>Congratulations, your application has been approved. Welcome to Sports For Kids!</p>
 <% else %>
     </p>Your application is currently pending.</p>
-    <%= button_to "Cancel My Application", "#", method: :delete, class: "py-3 px-5 inline-block font-medium bg-maroon hover:bg-maroon-light rounded-lg text-white cursor-pointer" %>
-    <h2 class="text-3xl font-semibold">Upcoming Recruitment Events: </h2>
-    <div class="flex">
-        <%# <% events.each do |idk| %> %>
-            <div class="border border-gray-300 rounded p-3"></div>
-        <%# <% end %> %>
-    </div>
 <% end %>

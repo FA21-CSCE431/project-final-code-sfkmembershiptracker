@@ -16,4 +16,3 @@ class RoutesController < ApplicationController
     end
 
 end
-  

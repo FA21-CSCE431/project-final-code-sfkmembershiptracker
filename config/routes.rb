@@ -11,7 +11,6 @@ Rails.application.routes.draw do
   resources :positions
   resources :members
   resources :contact_form, only: [:contact_us, :create]
-  #resources :contact_form
 
   root to: 'routes#home'
   get 'home', to: 'routes#home'

@@ -6,12 +6,6 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
-ApplicationQuestion.destroy_all
-ApplicationAnswer.destroy_all
-Member.destroy_all
-User.destroy_all
-Position.destroy_all
-
 Position.create([
     { role: 'Applicant', member: false },
     { role: 'Member' },
@@ -67,7 +61,7 @@ User.create([
 
 Member.create([
     { email: 'sfk.website.431@gmail.com', full_name: 'Test Admin', position_id: '11' },
-    { email: 'sclark@tamu.edu', full_name: 'Steven Clark', position_id: '1' },
+    { email: 'sclark@tamu.edu', full_name: 'Steven Clark', position_id: '2' },
     { email: 'lfh447@tamu.edu', full_name: 'Luis Hernandez', position_id: '2' },
     { email: 'nickbanderson@tamu.edu', full_name: 'Nicholas Anderson', position_id: '2' },
     { email: 'kiddrock025@tamu.edu', full_name: 'Nicholas LaBombard', position_id: '2' },

@@ -17,6 +17,7 @@ Rails.application.routes.draw do
   get 'social_media', to: 'routes#social_media'
   get 'team', to: 'routes#team'
   get 'dashboard', to: 'events#dashboard'
+  get 'dashboard/applicant', to: 'events#act_on_applicant'
   get 'status', to: 'members#status'
   get 'profile', to: 'members#profile'
   get 'profile/edit', to: 'members#edit'

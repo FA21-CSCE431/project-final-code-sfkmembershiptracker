@@ -1,6 +1,60 @@
 class EventsController < ApplicationController
   before_action :authenticate_user!
   before_action :set_event, only: %i[ show edit update destroy ]
+
+  def dashboard
+    if current_user.member.position.is_admin
+      dashboard_admin()
+    else
+      render :dashboard
+    end
+  end
+
+  def dashboard_admin
+    @applications = {} # key: email, value: array of Q+A for that email
+    answers = ApplicationAnswer.all
+    answers.each{ |a| 
+      if !@applications.key?(a.member_email)
+        @applications[a.member_email] = []
+      end
+      @applications[a.member_email].push({
+        :question => a.question,
+        :answer => a.answer,
+      })
+    }
+
+    render :dashboard_admin
+  end
+
+  def act_on_applicant
+    if params[:commit] == 'Reject'
+      # delete ApplicationAnswer entries
+      redirect_to '/dashboard'
+    elsif params[:commit] == 'Accept' 
+      # create Member entry
+      answers = ApplicationAnswer.where({member_email: params[:email]})
+      if answers.size == 0
+        raise "Accepting applicant, but applicant has no application answers"
+      end
+
+      answers.each{ |a| puts a[:answer] }
+      new_member = Member.new({
+        email: params[:email],
+        full_name: answers.find{|a| a[:question] == "What is your full name?"},
+        phone: answers.find{|a| a[:question] == "What is your phone number?"},
+        grad_date: answers.find{|a| a[:question] == "Which semester and year do you expect to graduate?"},
+        position_id: 2, # member
+      })
+      if !new_member.save
+        redirect_to '/dashboard', notice: "ERROR: Application action failed!"
+      else
+        redirect_to '/dashboard', notice: "Success! Member added."
+      end
+    else
+      raise "unreachable: events#act_on_applicant"
+    end
+  end
+
   # GET /events or /events.json
   def index
     @events = Event.all

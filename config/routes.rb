@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :participations
   devise_for :users, controllers: { omniauth_callbacks: 'users/omniauth_callbacks' }
   devise_scope :user do
     get 'users/sign_in', to: 'users/sessions#new', as: :new_user_session
@@ -6,7 +7,6 @@ Rails.application.routes.draw do
   end
 
   resources :sfk_infos
-  resources :participants
   resources :applications
   resources :events
   resources :positions

@@ -1,0 +1,31 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Participations</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Event</th>
+      <th>Member email</th>
+      <th>User code</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @participations.each do |participation| %>
+      <tr>
+        <td><%= participation.event_id %></td>
+        <td><%= participation.member_email %></td>
+        <td><%= participation.user_code %></td>
+        <td><%= link_to 'Show', participation %></td>
+        <td><%= link_to 'Edit', edit_participation_path(participation) %></td>
+        <td><%= link_to 'Destroy', participation, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Participation', new_participation_path %>

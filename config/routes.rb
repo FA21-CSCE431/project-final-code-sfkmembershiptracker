@@ -1,11 +1,12 @@
 Rails.application.routes.draw do
+  resources :participations
   devise_for :users, controllers: { omniauth_callbacks: 'users/omniauth_callbacks' }
   devise_scope :user do
     get 'users/sign_in', to: 'users/sessions#new', as: :new_user_session
     get 'users/sign_out', to: 'users/sessions#destroy', as: :destroy_user_session
   end
 
-  resources :participants
+  resources :sfk_infos
   resources :applications
   resources :events
   resources :positions
@@ -40,6 +41,8 @@ Rails.application.routes.draw do
   
   get 'answers', to: 'apply#a_index'
   post 'answers', to: 'apply#a_create'
+
+  get 'about', to: 'routes#about'
   
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routes.html
 end

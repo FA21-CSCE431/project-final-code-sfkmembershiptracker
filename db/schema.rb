@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_11_05_004426) do
+ActiveRecord::Schema.define(version: 2021_11_11_072931) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -76,6 +76,14 @@ ActiveRecord::Schema.define(version: 2021_11_05_004426) do
     t.boolean "can_change_roster", default: false, null: false
     t.boolean "member", default: true, null: false
     t.boolean "officer", default: false, null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "sfk_infos", force: :cascade do |t|
+    t.string "mission"
+    t.string "history"
+    t.string "ig_link"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end

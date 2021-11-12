@@ -5,6 +5,7 @@ Rails.application.routes.draw do
     get 'users/sign_out', to: 'users/sessions#destroy', as: :destroy_user_session
   end
 
+  resources :sfk_infos
   resources :participants
   resources :applications
   resources :events
@@ -40,6 +41,8 @@ Rails.application.routes.draw do
   
   get 'answers', to: 'apply#a_index'
   post 'answers', to: 'apply#a_create'
+
+  get 'about', to: 'routes#about'
   
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routes.html
 end

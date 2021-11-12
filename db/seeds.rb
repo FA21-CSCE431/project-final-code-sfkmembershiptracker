@@ -73,3 +73,7 @@ ApplicationQuestion.create([
     { question: 'What is your phone number?' },
     { question: 'Which semester and year do you expect to graduate?' },
 ])
+
+SfkInfo.create([
+    { mission: 'We hope to create possibilities for children (ages ~4-12) from the Bryan/College Station area to obtain involvement in youth organized sports and by promoting the importance of athletic activities in the lives of young people. In doing this, we hope to display how a student organization can positively impact a community while creating an enthusiastic social environment.', history: 'this is our history', ig_link: 'CN7ijg7lbkd'}
+])

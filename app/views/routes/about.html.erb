@@ -13,3 +13,21 @@
 </p>
 <h2 class="text-2xl mb-3 font-semibold">Contact Us</h2>
 <%= render "partials/contact_form" %>
+
+<br><br>
+
+    <p class="my-5">
+        <strong class="block font-medium mb-1">Mission:</strong>
+        <%= @info.mission %>
+    </p>
+
+    <p class="my-5">
+        <strong class="block font-medium mb-1">History:</strong>
+        <%= @info.history %>
+    </p>
+
+    <% if current_user.member.position.can_change_positions? %>
+    <%= link_to 'Edit Information', edit_sfk_info_path(@info), class: "rounded-lg py-3 ml-2 px-5 bg-gray-100 inline-block font-medium" %>
+    <% end %> 
+
+</div>

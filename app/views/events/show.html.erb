@@ -2,6 +2,9 @@
   <div class="mx-auto">
     <%= render @event %>
 
+    <% if current_user.member.position.member? %>
+      <%= link_to 'Confirm Participation', new_participation_path, class: "rounded-lg py-3 px-5 bg-blue-600 text-white inline-block font-medium" %>
+    <% end %>
 
     <% if current_user.member.position.can_change_events? %>
       <%= link_to 'Edit this event', edit_event_path(@event), class: "mt-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>

@@ -27,7 +27,3 @@
       </div>
   </div>
 </div>
-
-<% if current_user.member.position.can_change_positions? %>
-<%= link_to 'Edit Information', edit_sfk_info_path(@info), class: "rounded-lg py-3 ml-2 px-5 bg-gray-100 inline-block font-medium" %>
-<% end %> 

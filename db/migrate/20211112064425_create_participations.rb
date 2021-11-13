@@ -7,5 +7,7 @@ class CreateParticipations < ActiveRecord::Migration[6.1]
 
       t.timestamps
     end
+    add_foreign_key :participations, :events, column: :event_id, primary_key: "id"
+    add_foreign_key :participations, :members, column: :member_email, primary_key: "email"
   end
 end

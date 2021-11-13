@@ -1,4 +1,5 @@
 class ParticipationsController < ApplicationController
+  before_action :authenticate_user!
   before_action :set_participation, only: %i[ show edit update destroy ]
 
   # GET /participations or /participations.json
@@ -22,14 +23,22 @@ class ParticipationsController < ApplicationController
   # POST /participations or /participations.json
   def create
     @participation = Participation.new(participation_params)
+    event = Event.find_by(id: @participation.event_id)
 
     respond_to do |format|
-      if @participation.save
-        format.html { redirect_to @participation, notice: "Participation was successfully created." }
-        format.json { render :show, status: :created, location: @participation }
+      if @participation.user_code == event.confirmation_code
+        if @participation.save
+          format.html { redirect_to events_path, notice: "Points have been added to your account." }
+          format.json { render :show, status: :created, location: @participation }
+          pmember = Member.find_by(email: @participation.member_email)
+          pmember.update_attribute(:points, pmember.points + event.points)
+        else
+          format.html { render :new, status: :unprocessable_entity }
+          format.json { render json: @participation.errors, status: :unprocessable_entity }
+        end
       else
+        flash[:alert] = "Incorrect confimation code."
         format.html { render :new, status: :unprocessable_entity }
-        format.json { render json: @participation.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -57,6 +66,7 @@ class ParticipationsController < ApplicationController
   end
 
   private
+
     # Use callbacks to share common setup or constraints between actions.
     def set_participation
       @participation = Participation.find(params[:id])

@@ -11,22 +11,21 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= form.label :event_id %>
-    <%= form.text_field :event_id %>
+  <div class="my-5">
+    <%= form.label :name %>
+    <%= form.select :event_id, options_for_select(Event.select(:name, :id).where(date: 7.days.ago..).map{|c| [c.name, c.id]} ), { include_blank: "Select an Event" } %><br />
   </div>
 
-  <div class="field">
-    <%= form.label :member_email %>
-    <%= form.text_field :member_email %>
+  <div class="my-5">
+    <%= form.hidden_field :member_email, value: current_user.member.email %>
   </div>
 
-  <div class="field">
-    <%= form.label :user_code %>
-    <%= form.text_field :user_code %>
+  <div class="my-5">
+    <%= form.label "Enter the confirmation code" %>
+    <%= form.password_field :user_code, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %><br />
   </div>
 
-  <div class="actions">
-    <%= form.submit %>
+  <div class="inline">
+    <%= form.submit "Submit Code", class: "rounded-lg py-3 px-5 bg-blue-600 text-white inline-block font-medium" %>
   </div>
 <% end %>

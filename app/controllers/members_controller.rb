@@ -72,13 +72,13 @@ class MembersController < ApplicationController
     if current_user.member == @member
       @member.destroy
       respond_to do |format|
-        format.html { redirect_to "/", notice: "Your application has been rescinded." }
+        format.html { redirect_to "/", notice: "You have been removed. We're sorry to see you go!" }
         format.json { head :no_content }
       end
     else
       @member.destroy
       respond_to do |format|
-        format.html { redirect_to members_url, notice: "Member was successfully destroyed." }
+        format.html { redirect_to members_url, notice: "Member was successfully removed from roster." }
         format.json { head :no_content }
       end
     end

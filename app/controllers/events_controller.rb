@@ -207,23 +207,23 @@ end
         end
 
         if (current_event.event_type == 'Intramural')
-          @mandatory += current_event.points
+          @intramural += current_event.points
         end
 
         if (current_event.event_type == 'Friend/Fundraiser')
-          @snack_chalk += current_event.points
+          @friend_fundraiser += current_event.points
         end
 
         if (current_event.event_type == 'SFK Socials')
-          @mandatory += current_event.points
+          @sfk_socials += current_event.points
         end
 
         if (current_event.event_type == 'Committee Socials')
-          @snack_chalk += current_event.points
+          @committee_socials += current_event.points
         end
 
         if (current_event.event_type == 'Sports Fest Prep')
-          @mandatory += current_event.points
+          @sports_fest_prep += current_event.points
         end
 
         if (current_event.event_type == 'Meeting')

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_11_11_072931) do
+ActiveRecord::Schema.define(version: 2021_11_12_064425) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -52,19 +52,10 @@ ActiveRecord::Schema.define(version: 2021_11_11_072931) do
     t.index ["position_id"], name: "index_members_on_position_id"
   end
 
-  create_table "participants", force: :cascade do |t|
-    t.bigint "events_id"
+  create_table "participations", force: :cascade do |t|
+    t.bigint "event_id"
     t.string "member_email"
     t.string "user_code"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["events_id"], name: "index_participants_on_events_id"
-  end
-
-  create_table "payments", force: :cascade do |t|
-    t.date "date"
-    t.decimal "amount"
-    t.string "description"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
@@ -100,5 +91,6 @@ ActiveRecord::Schema.define(version: 2021_11_11_072931) do
   add_foreign_key "application_answers", "members", column: "member_email", primary_key: "email"
   add_foreign_key "members", "positions"
   add_foreign_key "members", "users", column: "email", primary_key: "email"
-  add_foreign_key "participants", "members", column: "member_email", primary_key: "email"
+  add_foreign_key "participations", "events"
+  add_foreign_key "participations", "members", column: "member_email", primary_key: "email"
 end

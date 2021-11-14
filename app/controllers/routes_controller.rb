@@ -9,7 +9,7 @@ class RoutesController < ApplicationController
     end
 
     def team
-        @team = Member.where("position_id = 3")
+        @team = Member.joins(:position).where('position.officer' => true).order(position: :desc)
     end
 
     def dashboard

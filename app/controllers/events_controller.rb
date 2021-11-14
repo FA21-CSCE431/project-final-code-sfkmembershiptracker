@@ -6,6 +6,7 @@ class EventsController < ApplicationController
     if current_user.member.position.officer
       dashboard_admin()
     else
+      events_participated()
       render :dashboard
     end
   end
@@ -117,7 +118,7 @@ end
 
   # GET /events or /events.json
   def index
-    @events = Event.all
+    @events = Event.where(date: 1.month.ago..)
   end
 
   # GET /events/1 or /events/1.json
@@ -180,4 +181,53 @@ end
     def event_params
       params.require(:event).permit(:name, :event_type, :date, :location, :points, :confirmation_code)
     end
+
+    def events_participated
+      events_participated = Participation.where(member_email: current_user.member.email)
+      @mandatory = 0
+      @snack_chalk = 0
+      @intramural = 0
+      @friend_fundraiser = 0
+      @sfk_socials = 0
+      @committee_socials = 0
+      @sports_fest_prep = 0
+      @meetings = 0
+      
+      for i in events_participated do
+        current_event = Event.find_by(id: i.event_id)
+        if (current_event.event_type == 'Mandatory Event')
+          @mandatory += current_event.points
+        end
+
+        if (current_event.event_type == 'Snack/Chalk')
+          @snack_chalk += current_event.points
+        end
+
+        if (current_event.event_type == 'Intramural')
+          @mandatory += current_event.points
+        end
+
+        if (current_event.event_type == 'Friend/Fundraiser')
+          @snack_chalk += current_event.points
+        end
+
+        if (current_event.event_type == 'SFK Socials')
+          @mandatory += current_event.points
+        end
+
+        if (current_event.event_type == 'Committee Socials')
+          @snack_chalk += current_event.points
+        end
+
+        if (current_event.event_type == 'Sports Fest Prep')
+          @mandatory += current_event.points
+        end
+
+        if (current_event.event_type == 'Meeting')
+          @meetings += current_event.points
+        end
+
+      end
+    end
+
 end

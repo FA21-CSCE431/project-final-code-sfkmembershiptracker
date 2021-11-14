@@ -91,4 +91,6 @@ ActiveRecord::Schema.define(version: 2021_11_12_064425) do
   add_foreign_key "application_answers", "members", column: "member_email", primary_key: "email"
   add_foreign_key "members", "positions"
   add_foreign_key "members", "users", column: "email", primary_key: "email"
+  add_foreign_key "participations", "events"
+  add_foreign_key "participations", "members", column: "member_email", primary_key: "email"
 end

@@ -1,19 +1,15 @@
-<p id="notice"><%= notice %></p>
+<div class="mx-auto md:w-2/3 w-full flex">
+  <div class="mx-auto">
+    <%= render @participation %>
 
-<p>
-  <strong>Event:</strong>
-  <%= @participation.event_id %>
-</p>
+    <% if current_user.member.position.can_change_events? %>
+      <%= link_to 'Edit this participation', edit_participation_path(@participation), class: "mt-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
+      <div class="inline-block ml-2">
+        <%= button_to 'Delete this participation', participation_path(@participation), method: :delete, data: { confirm: "Are you sure you want to delete this event?" }, class: "mt-2 rounded-lg py-3 px-5 bg-gray-100 font-medium" %>
+      </div>
+    <% end %>
 
-<p>
-  <strong>Member email:</strong>
-  <%= @participation.member_email %>
-</p>
+    <%= link_to 'Back to events', events_path, class: "ml-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
 
-<p>
-  <strong>User code:</strong>
-  <%= @participation.user_code %>
-</p>
-
-<%= link_to 'Edit', edit_participation_path(@participation) %> |
-<%= link_to 'Back', participations_path %>
+  </div>
+</div>

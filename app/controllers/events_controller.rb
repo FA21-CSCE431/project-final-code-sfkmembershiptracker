@@ -164,6 +164,9 @@ end
 
   # DELETE /events/1 or /events/1.json
   def destroy
+    delete_participations = Participation.where(event_id: @event.id)
+    delete_participations.each { |x| x.destroy }
+
     @event.destroy
     respond_to do |format|
       format.html { redirect_to events_url, notice: "Event was successfully deleted." }

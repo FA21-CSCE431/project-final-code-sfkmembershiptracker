@@ -12,6 +12,8 @@ class EventsController < ApplicationController
   end
 
   def dashboard_admin
+    @info = SfkInfo.last
+
     @applications = {} # key: email, value: array of Q+A for that email
     answers = ApplicationAnswer.all
     answers.each{ |a|

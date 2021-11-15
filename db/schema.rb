@@ -65,6 +65,8 @@ ActiveRecord::Schema.define(version: 2021_11_12_064425) do
     t.boolean "can_change_positions", default: false, null: false
     t.boolean "can_change_events", default: false, null: false
     t.boolean "can_change_roster", default: false, null: false
+    t.boolean "can_change_info", default: false, null: false
+    t.boolean "can_change_apply", default: false, null: false
     t.boolean "member", default: true, null: false
     t.boolean "officer", default: false, null: false
     t.datetime "created_at", precision: 6, null: false

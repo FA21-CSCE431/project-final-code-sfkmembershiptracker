@@ -1,7 +1,7 @@
 <div class="w-full">
   <% if current_user.member.position.can_change_events? %>
     <div class="flex justify-between items-center">
-      <h1 class="text-lg font-bold text-4xl">Participation</h1>
+      <h1 class="text-6xl font-black">Member Participations</h1>
       <%= link_to 'New participation', new_participation_path, class: "rounded-lg py-3 px-5 bg-blue-600 text-white block font-medium" %>
     </div>
 
@@ -10,5 +10,6 @@
     </div>
   <% else %>
     <h1 class="text-lg font-bold text-4xl">You shouldn't be here!</h1>
+    <%= link_to 'Back to events', events_path, class: "ml-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
   <% end %>
 </div>

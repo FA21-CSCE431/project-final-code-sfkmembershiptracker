@@ -1,6 +1,6 @@
 <div class="w-full">
   <div class="flex justify-between items-center">
-    <h1 class="text-lg font-bold text-4xl">Events</h1>
+    <h1 class="text-6xl font-black">Events</h1>
     <% if current_user.member.position.can_change_events? %>
       <%= link_to 'New event', new_event_path, class: "rounded-lg py-3 px-5 bg-blue-600 text-white block font-medium" %>
     <% end %>

@@ -1,0 +1,2 @@
+module SfkInfosHelper
+end

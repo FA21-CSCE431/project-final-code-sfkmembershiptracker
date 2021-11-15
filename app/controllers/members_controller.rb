@@ -69,16 +69,22 @@ class MembersController < ApplicationController
 
   # DELETE /members/1 or /members/1.json
   def destroy
+    # destroy their ApplicationAnswers first
+    answers = ApplicationAnswer.where({member_email: @member[:email]})
+    if answers.size != 0
+      answers.destroy_all
+    end
+
     if current_user.member == @member
       @member.destroy
       respond_to do |format|
-        format.html { redirect_to "/", notice: "Your application has been rescinded." }
+        format.html { redirect_to "/", notice: "You have been removed. We're sorry to see you go!" }
         format.json { head :no_content }
       end
     else
       @member.destroy
       respond_to do |format|
-        format.html { redirect_to members_url, notice: "Member was successfully destroyed." }
+        format.html { redirect_to members_url, notice: "Member was successfully removed from roster." }
         format.json { head :no_content }
       end
     end
@@ -96,6 +102,6 @@ class MembersController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def member_params
-      params.require(:member).permit(:email, :full_name, :phone, :bio, :position_id, :grad_date, :points, :application_id)
+      params.require(:member).permit(:email, :full_name, :phone, :bio, :position_id, :grad_date, :points)
     end
 end

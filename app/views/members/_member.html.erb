@@ -7,10 +7,13 @@
     <td class="pr-4"><%= member.grad_date %></td>
     <td class="pr-4"><%= member.points %></td>
     <td>
-      <%= link_to "View member profile", member, class: "whitespace-nowrap py-3 px-5 inline-block font-medium bg-maroon hover:bg-maroon-light rounded-lg text-white" %>
+      <%= link_to "View member profile", member, class: "py-3 px-5 inline-block bg-maroon hover:bg-maroon-light rounded-lg text-white font-medium whitespace-nowrap" %>
     </td>
     <td>
-      <%= link_to 'Edit this member', edit_member_path(member), class: "whitespace-nowrap rounded-lg py-3 ml-2 px-5 bg-gray-100 inline-block font-medium" %>
+      <%= link_to 'Edit this member', edit_member_path(member), class: "py-3 px-5 ml-2 inline-block bg-gray-100 rounded-lg font-medium whitespace-nowrap " %>
+    </td>
+    <td>
+      <%= button_to "Remove This Member", member, :method => :delete, data: { confirm: "Are you sure?" }, class: "py-3 px-5 ml-2 inline-block bg-gray-100 rounded-lg font-medium whitespace-nowrap cursor-pointer" %>
     </td>
   </tr>
 <% else %>
@@ -50,8 +53,8 @@
       <%= member.points %>
     </p>
     <% if action_name != "show" && action_name != "profile" %>
-      <%= link_to "View member profile", member, class: "py-3 px-5 inline-block font-medium bg-maroon hover:bg-maroon-light rounded-lg text-white" %>
-      <%= link_to 'Edit this member', edit_member_path(member), class: "rounded-lg py-3 ml-2 px-5 bg-gray-100 inline-block font-medium" %>
+      <%= link_to "View member profile", member, class: "py-3 px-5 inline-block bg-maroon hover:bg-maroon-light rounded-lg font-medium text-white" %>
+      <%= link_to 'Edit this member', edit_member_path(member), class: "py-3 px-5 ml-2 inline-block bg-gray-100 rounded-lg font-medium" %>
     <% end %>
   </div>
 <% end %>

@@ -69,7 +69,7 @@ class MembersController < ApplicationController
 
   # DELETE /members/1 or /members/1.json
   def destroy
-    # destroy their ApplicationQuestions first
+    # destroy their ApplicationAnswers first
     answers = ApplicationAnswer.where({member_email: @member[:email]})
     if answers.size != 0
       answers.destroy_all

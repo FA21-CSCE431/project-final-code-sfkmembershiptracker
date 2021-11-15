@@ -36,14 +36,14 @@
                 <% @questions.each do |q| %>
                 <tr >
                     <td class="font-semibold"><%= q.question %><br><br></td>
-                        <td><%= link_to 'Edit', edit_question_path(q), :class => "shadow bg-maroon hover:bg-maroon-dark focus:shadow-outline text-white font-bold py-2 px-4 rounded-lg cursor-pointer align-right" %></td>
-                        <td><%= link_to 'Delete', delete_question_path(q), :class => "shadow bg-maroon hover:bg-maroon-dark focus:shadow-outline text-white font-bold py-2 px-4 rounded-lg cursor-pointer align-right" %></td>
+                        <td><%= link_to 'Edit', '/dashboard/questions/' + q[:id].to_s, method: :get, :class => "shadow bg-maroon hover:bg-maroon-dark focus:shadow-outline text-white font-bold py-2 px-4 rounded-lg cursor-pointer align-right" %></td>
+                        <td><%= link_to 'Delete', '/dashboard/questions/' + q[:id].to_s + '/destroy', method: :get, :class => "shadow bg-maroon hover:bg-maroon-dark focus:shadow-outline text-white font-bold py-2 px-4 rounded-lg cursor-pointer align-right" %></td>
                 </tr>
                 <% end %>
             </tbody>
             </table>
             <br>
-            <%= link_to 'New Question', new_question_path, :class => "shadow bg-maroon hover:bg-maroon-dark focus:shadow-outline text-white font-bold py-2 px-4 rounded-lg cursor-pointer" %>
+            <%= link_to 'New Question', '/dashboard/questions/new', method: :get, :class => "shadow bg-maroon hover:bg-maroon-dark focus:shadow-outline text-white font-bold py-2 px-4 rounded-lg cursor-pointer align-right" %></td>
         </div>
     </div>
 

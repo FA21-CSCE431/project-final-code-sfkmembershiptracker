@@ -22,8 +22,8 @@
           <%= link_to "About Us", '/about', class: "block mt-4 lg:inline-block lg:mt-0 lg:ml-10 text-gray-200 hover:text-white" %>
           <%= link_to "Our Team", '/team', class: "block mt-4 lg:inline-block lg:mt-0 lg:ml-10 text-gray-200 hover:text-white" %>
           <%= link_to "Social Media", '/social_media', class: "block mt-4 lg:inline-block lg:mt-0 lg:ml-10 text-gray-200 hover:text-white" %>
-		  <%= link_to "Announcements", '/blog', class: "block mt-4 lg:inline-block lg:mt-0 lg:ml-10 text-gray-200 hover:text-white" %>
           <% if user_signed_in? %>
+		    <%= link_to "Announcements", '/blog', class: "block mt-4 lg:inline-block lg:mt-0 lg:ml-10 text-gray-200 hover:text-white" %>
             <%= link_to "Events", '/events', class: "block mt-4 lg:inline-block lg:mt-0 lg:ml-10 text-gray-200 hover:text-white" %>
           <% end %>
         </div>

@@ -26,18 +26,29 @@ class ParticipationsController < ApplicationController
     event = Event.find_by(id: @participation.event_id)
 
     respond_to do |format|
-      if @participation.user_code == event.confirmation_code
-        if @participation.save
-          format.html { redirect_to events_path, notice: "Points have been added to your account." }
-          format.json { render :show, status: :created, location: @participation }
-          pmember = Member.find_by(email: @participation.member_email)
-          pmember.update_attribute(:points, pmember.points + event.points)
+      if @participation.event_id.present?
+        if @participation.user_code == event.confirmation_code
+          existence_check = Participation.where(id: event.id, member_email: current_user.member.email)
+          if existence_check.empty?
+            if @participation.save
+              format.html { redirect_to events_path, notice: "Points have been added to your account." }
+              format.json { render :show, status: :created, location: @participation }
+              pmember = Member.find_by(email: @participation.member_email)
+              pmember.update_attribute(:points, pmember.points + event.points)
+            else
+              format.html { render :new, status: :unprocessable_entity }
+              format.json { render json: @participation.errors, status: :unprocessable_entity }
+            end
+          else
+            flash[:alert] = "You've already registered for that event!"
+            format.html { render :new, status: :unprocessable_entity }
+          end
         else
+          flash[:alert] = "Incorrect confimation code!"
           format.html { render :new, status: :unprocessable_entity }
-          format.json { render json: @participation.errors, status: :unprocessable_entity }
         end
       else
-        flash[:alert] = "Incorrect confimation code."
+        flash[:alert] = "Please select an event!"
         format.html { render :new, status: :unprocessable_entity }
       end
     end
@@ -58,6 +69,10 @@ class ParticipationsController < ApplicationController
 
   # DELETE /participations/1 or /participations/1.json
   def destroy
+    remove_member = Member.find_by(email: @participation.member_email)
+    remove_event = Event.find_by(id: @participation.event_id)
+    remove_member.update_attribute(:points, remove_member.points - remove_event.points)
+
     @participation.destroy
     respond_to do |format|
       format.html { redirect_to participations_url, notice: "Participation was successfully destroyed." }

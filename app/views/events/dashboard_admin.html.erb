@@ -59,21 +59,32 @@
 
     <div>
       <% if user_signed_in? %>
-          <% if current_user.member.position.can_change_events? %>
-              <h2 class="text-2xl mb-3 font-semibold">Edit Event Information</h2>
-              <%= link_to 'Edit Events', events_path, class: "shadow bg-maroon hover:bg-maroon-dark focus:shadow-outline text-white font-bold py-3 ml-5 px-5 rounded-lg inline-block cursor-pointer" %>
-          <% end %>
+        <% if current_user.member.position.can_change_events? %>
+          <h2 class="text-2xl mb-3 font-semibold">Edit Event Information</h2>
+          <%= link_to 'Edit Events', events_path, class: "shadow bg-maroon hover:bg-maroon-dark focus:shadow-outline text-white font-bold py-3 ml-5 px-5 rounded-lg inline-block cursor-pointer" %>
+        <% end %>
       <% end %>
     </div>
 
     <br><br>
 
     <div>
-        <h2 class="text-2xl mb-3 font-semibold">View Member Roster</h2>
-        <% if user_signed_in? %>
-          <% if current_user.member.position.can_change_roster? %>
-            <%= link_to 'Member Roster', members_path, class: "shadow bg-maroon hover:bg-maroon-dark focus:shadow-outline text-white font-bold py-3 ml-5 px-5 rounded-lg inline-block cursor-pointer" %>
-          <% end %>
+      <h2 class="text-2xl mb-3 font-semibold">View Member Event Paricipations</h2>
+      <% if user_signed_in? %>
+        <% if current_user.member.position.can_change_events? %>
+          <%= link_to 'Edit Participations', participations_path, class: "shadow bg-maroon hover:bg-maroon-dark focus:shadow-outline text-white font-bold py-3 ml-5 px-5 rounded-lg inline-block cursor-pointer" %>
+        <% end %>
+      <% end %>
+    </div>
+
+    <br><br>
+
+    <div>
+      <h2 class="text-2xl mb-3 font-semibold">View Member Roster</h2>
+      <% if user_signed_in? %>
+        <% if current_user.member.position.can_change_roster? %>
+          <%= link_to 'Member Roster', members_path, class: "shadow bg-maroon hover:bg-maroon-dark focus:shadow-outline text-white font-bold py-3 ml-5 px-5 rounded-lg inline-block cursor-pointer" %>
+        <% end %>
       <% end %>
     </div>
 
@@ -82,9 +93,9 @@
     <div>
       <h2 class="text-2xl mb-3 font-semibold">Edit About Us / Social Media</h2>
       <% if user_signed_in? %>
-          <% if current_user.member.position.can_change_info? %>
-              <%= link_to 'Edit Information', edit_sfk_info_path(@info), class: "shadow bg-maroon hover:bg-maroon-dark focus:shadow-outline text-white font-bold py-3 ml-5 px-5 rounded-lg inline-block cursor-pointer" %>
-          <% end %>
+        <% if current_user.member.position.can_change_info? %>
+          <%= link_to 'Edit Information', edit_sfk_info_path(@info), class: "shadow bg-maroon hover:bg-maroon-dark focus:shadow-outline text-white font-bold py-3 ml-5 px-5 rounded-lg inline-block cursor-pointer" %>
+        <% end %>
       <% end %>
     </div>
 

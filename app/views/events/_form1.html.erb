@@ -1,4 +1,4 @@
-<%= form_with(url: questions_path + "/" + @question.id.to_s, class: "contents", method: :patch) do |form| %>
+<%= form_with(url: '/dashboard/questions', method: :post, class: "contents") do |form| %>
 	
 	<% if question.errors.any? %>
     <div id="error_explanation">
@@ -12,18 +12,13 @@
     </div>
   <% end %>
 	
-	<div class="my-5">
-    This question will be changed: </br>
-		<b><%= @question.question %></b>
-  </div>
-	
   <div class="my-5">
-    <%= form.label "New Question:" %>
+    <%= form.label :question %>
     <%= form.text_field :question, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
   </div>
 
   <div class="inline">
-		<%= form.submit class: "py-3 px-5 inline-block font-medium bg-maroon hover:bg-maroon-light rounded-lg text-white cursor-pointer" %>
+    <%= form.submit class: "py-3 px-5 inline-block font-medium bg-maroon hover:bg-maroon-light rounded-lg text-white cursor-pointer" %>
   </div>
 	
 <% end %>

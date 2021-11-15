@@ -60,61 +60,56 @@ class EventsController < ApplicationController
     end
   end
 
+  # GET /dashboard/questions/new
+  def q_new
+	  @question = ApplicationQuestion.new
+    render :q_new
+  end
 
-  ###################### DOES NOT WORK YET ################
-# POST /questions
-def q_create
-	@question = ApplicationQuestion.new(question_params)
+  # POST /dashboard/questions/new
+  def q_create
+	  @question = ApplicationQuestion.new(question: params[:question])
 
-	respond_to do |format|
-		if @question.save
-			format.html { redirect_to '/apply', notice: "Question was successfully created." }
-			format.json { render :show, status: :created, location: @question }
-		else
-			format.html { render :new, status: :unprocessable_entity }
-			format.json { render json: @question.errors, status: :unprocessable_entity }
-		end
-	end
-end
+	  respond_to do |format|
+		  if @question.save
+			  format.html { redirect_to '/dashboard', notice: "Question was successfully created." }
+			  format.json { render :show, status: :created, location: @question }
+		  else
+			  format.html { render :new, status: :unprocessable_entity }
+			  format.json { render json: @question.errors, status: :unprocessable_entity }
+		  end
+	  end
+  end
 
-# GET /questions/1/edit
-def q_edit
-	@question = ApplicationQuestion.find(params[:id])
-end
+  # GET /dashboard/questions/:id
+  def q_edit
+	  @question = ApplicationQuestion.find(params[:id])
+    render :q_edit
+  end
 
-# PUT /questions/:id
-def q_update
-	respond_to do |format|
-		@question = ApplicationQuestion.find(params[:id])
-		if @question.update(question_params)
-			format.html { redirect_to '/apply', notice: "Question was successfully updated." }
-			format.json { render :show, status: :ok, location: @question }
-		else
-			format.html { render :edit, status: :unprocessable_entity }
-			format.json { render json: @question.errors, status: :unprocessable_entity }
-		end
-	end
-end
+  # PUT /dashboard/questions/:id
+  def q_update
+	  respond_to do |format|
+		  @question = ApplicationQuestion.find(params[:id])
+		  if @question.update(question: params[:question])
+			  format.html { redirect_to '/dashboard', notice: "Question was successfully updated." }
+			  format.json { render :show, status: :ok, location: @question }
+		  else
+			  format.html { render :edit, status: :unprocessable_entity }
+			  format.json { render json: @question.errors, status: :unprocessable_entity }
+		  end
+	  end
+  end
 
-# DELETE /questions/:id
-def q_destroy
-	@question = ApplicationQuestion.find(params[:id])
-	@question.destroy
-    respond_to do |format|
-      format.html { redirect_to '/apply', notice: "Question was successfully destroyed." }
-      format.json { head :no_content }
-    end
-end
-
-def q_delete
-	@question = ApplicationQuestion.find(params[:id])
-end
-
-# GET /questions/new
-def q_new
-	@question = ApplicationQuestion.new
-end
-  ######################################
+  # DELETE /dashboard/questions/:id
+  def q_destroy
+	  @question = ApplicationQuestion.find(params[:id])
+	  @question.destroy
+      respond_to do |format|
+        format.html { redirect_to '/dashboard', notice: "Question was successfully destroyed." }
+        format.json { head :no_content }
+      end
+  end
 
   # GET /events or /events.json
   def index

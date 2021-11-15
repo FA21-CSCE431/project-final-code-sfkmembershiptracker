@@ -12,6 +12,7 @@ Rails.application.routes.draw do
   resources :positions
   resources :members, param: :email, constraints: { email: /.*/ }
   resources :contact_form, only: [:contact_us, :create]
+  resources :blog_posts
 
   root to: 'routes#home'
   get 'home', to: 'routes#home'
@@ -20,6 +21,7 @@ Rails.application.routes.draw do
   get 'social_media', to: 'routes#social_media'
   get 'contact', to: 'contact_form#index'
   post 'contact', to: 'contact_form#create'
+  get 'blog', to: 'blog_posts#index'
 
   get 'dashboard', to: 'events#dashboard'
   get 'dashboard/applicant', to: 'events#act_on_applicant'

@@ -1,1 +1,1 @@
-json.partial! "participations/participation", participation: @participation
+json.partial! 'participations/participation', participation: @participation

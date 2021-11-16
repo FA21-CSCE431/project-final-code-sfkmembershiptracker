@@ -1,1 +1,1 @@
-json.partial! "sfk_infos/sfk_info", sfk_info: @sfk_info
+json.partial! 'sfk_infos/sfk_info', sfk_info: @sfk_info

@@ -1,4 +1,4 @@
 class ApplicationAnswer < ApplicationRecord
-  validates_uniqueness_of :member_email, :scope => :question
+  validates :member_email, uniqueness: { scope: :question }
   belongs_to :member, optional: true
 end

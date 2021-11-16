@@ -69,9 +69,26 @@ Member.create([
 ])
 
 ApplicationQuestion.create([
-    { question: 'What is your full name?' },
-    { question: 'What is your phone number?' },
-    { question: 'Which semester and year do you expect to graduate?' },
+    { question: 'Gender' },
+    { question: 'Birthday' },
+    { question: 'Major' },
+    { question: 'GPR (type "Transfer" or "Freshman" instead if these apply to you)' },
+    { question: 'T-Shirt Size' },
+    { question: 'Have you participated in Sports for Kids as a member before?' },
+    { question: 'Will you be able to attend the in-person member retreat?' },
+    { question: 'Will you prefer to attend interviews online or in-person?' },
+    { question: 'One interesting fact about you? (100 words or less)' },
+    { question: 'What hobbies/interests do you have?' },
+    { question: 'What other activities (orgs, work, clubs...) are you involved in?' },
+    { question: 'Choose three words to describe yourself then explain why you chose them.' },
+    { question: 'If you had to pick any animal to ride into battle on, what would it be and why?' },
+    { question: 'What would be your theme song and why?' },
+    { question: 'To work with minors under the age of 18 at events hosted by any organization at
+                 Texas A&M, the Student Activities office requires that the organization ensure its
+                 participants are not listed on the national sex offender registry.
+                 Please type your initials below, indicating you are aware that by applying to Sports
+                 for Kids you are giving the executive members of Sports for Kids consent to run your
+                 name through the national sex offender registry.' },
 ])
 
 SfkInfo.create([

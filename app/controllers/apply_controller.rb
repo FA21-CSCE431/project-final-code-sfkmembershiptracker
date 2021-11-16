@@ -68,10 +68,10 @@ end
 # POST /answers
 def a_create
 	new_member = Member.new({
-		email: params[:email],
-		full_name: params[:answers].find{|a| a[:q] == "What is your full name?"}[:a],
-		phone: params[:answers].find{|a| a[:q] == "What is your phone number?"}[:a],
-		grad_date: params[:answers].find{|a| a[:q] == "Which semester and year do you expect to graduate?"}[:a],
+		email: current_user.id,
+		full_name: current_user.full_name,
+		phone: params[:phone_number],
+		grad_date: params[:graduation],
 		position_id: 1, # applicant
 	})
 
@@ -79,9 +79,15 @@ def a_create
 		raise "New member not saved!"
 	end
 
-  params[:answers].each{ |ans| 
+	# address the case where no custom questions exist
+	answers = params[:answers].nil? \
+		? [{ q: "Placeholder question--add some in the admin's Dashboard!",
+			   a: "To access the admin's Dashboard, first log in with an admin account" }] 
+		: params[:answers]
+
+  answers.each{ |ans| 
     row = ApplicationAnswer.new(answer: ans[:a], question: ans[:q], 
-                                   member_email: params[:email])
+                                   member_email: current_user.id)
     if !row.save
       respond_to do |format|
         format.html { redirect_to '/home', notice: "ERROR: Application not submitted!" }

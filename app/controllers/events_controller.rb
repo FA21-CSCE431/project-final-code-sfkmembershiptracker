@@ -18,7 +18,13 @@ class EventsController < ApplicationController
     answers = ApplicationAnswer.all
     answers.each{ |a|
       if !@applications.key?(a.member_email)
-        @applications[a.member_email] = []
+        mem = Member.find(a.member_email)
+        @applications[a.member_email] = [
+          {:question => "Name", :answer => mem.full_name},
+          {:question => "Email", :answer => mem.email},
+          {:question => "Phone", :answer => mem.phone},
+          {:question => "Graduation Date", :answer => mem.grad_date},
+        ]
       end
       @applications[a.member_email].push({
         :question => a.question,

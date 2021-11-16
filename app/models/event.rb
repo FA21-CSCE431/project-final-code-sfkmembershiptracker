@@ -8,6 +8,6 @@ class Event < ApplicationRecord
   validates :points, presence: true
   validates :confirmation_code, presence: true
 
-  has_many :participants
-  has_many :members
+  has_many :participants, dependent: :nullify
+  has_many :members, dependent: :nullify
 end

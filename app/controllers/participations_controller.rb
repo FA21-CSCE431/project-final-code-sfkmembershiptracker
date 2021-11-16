@@ -1,19 +1,18 @@
 class ParticipationsController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_participation, only: %i[ show edit update destroy ]
+  before_action :set_participation, only: %i[show edit update destroy]
 
   # GET /participations or /participations.json
   def index
-    if !current_user.member.position.can_change_events
-      redirect_to "/", alert: "You don't have permission to view the member participations."
+    unless current_user.member.position.can_change_events
+      redirect_to '/', alert: "You don't have permission to view the member participations."
     end
 
     @participations = Participation.all
   end
 
   # GET /participations/1 or /participations/1.json
-  def show
-  end
+  def show; end
 
   # GET /participations/new
   def new
@@ -21,8 +20,7 @@ class ParticipationsController < ApplicationController
   end
 
   # GET /participations/1/edit
-  def edit
-  end
+  def edit; end
 
   # POST /participations or /participations.json
   def create
@@ -35,7 +33,7 @@ class ParticipationsController < ApplicationController
           existence_check = Participation.where(id: event.id, member_email: current_user.member.email)
           if existence_check.empty?
             if @participation.save
-              format.html { redirect_to events_path, notice: "Points have been added to your account." }
+              format.html { redirect_to events_path, notice: 'Points have been added to your account.' }
               format.json { render :show, status: :created, location: @participation }
               pmember = Member.find_by(email: @participation.member_email)
               pmember.update_attribute(:points, pmember.points + event.points)
@@ -48,11 +46,11 @@ class ParticipationsController < ApplicationController
             format.html { render :new, status: :unprocessable_entity }
           end
         else
-          flash[:alert] = "Incorrect confimation code!"
+          flash[:alert] = 'Incorrect confimation code!'
           format.html { render :new, status: :unprocessable_entity }
         end
       else
-        flash[:alert] = "Please select an event!"
+        flash[:alert] = 'Please select an event!'
         format.html { render :new, status: :unprocessable_entity }
       end
     end
@@ -62,7 +60,7 @@ class ParticipationsController < ApplicationController
   def update
     respond_to do |format|
       if @participation.update(participation_params)
-        format.html { redirect_to @participation, notice: "Participation was successfully updated." }
+        format.html { redirect_to @participation, notice: 'Participation was successfully updated.' }
         format.json { render :show, status: :ok, location: @participation }
       else
         format.html { render :edit, status: :unprocessable_entity }
@@ -79,20 +77,20 @@ class ParticipationsController < ApplicationController
 
     @participation.destroy
     respond_to do |format|
-      format.html { redirect_to participations_url, notice: "Participation was successfully destroyed." }
+      format.html { redirect_to participations_url, notice: 'Participation was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
 
   private
 
-    # Use callbacks to share common setup or constraints between actions.
-    def set_participation
-      @participation = Participation.find(params[:id])
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_participation
+    @participation = Participation.find(params[:id])
+  end
 
-    # Only allow a list of trusted parameters through.
-    def participation_params
-      params.require(:participation).permit(:event_id, :member_email, :user_code)
-    end
+  # Only allow a list of trusted parameters through.
+  def participation_params
+    params.require(:participation).permit(:event_id, :member_email, :user_code)
+  end
 end

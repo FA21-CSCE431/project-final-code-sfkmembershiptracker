@@ -1,34 +1,31 @@
 class MembersController < ApplicationController
   before_action :authenticate_user!
   before_action :check_member
-  before_action :set_member, only: %i[ profile status show edit update destroy ]
+  before_action :set_member, only: %i[profile status show edit update destroy]
 
   # GET /members or /members.json
   def index
-    if !current_user.member.position.can_change_roster
-      redirect_to "/", alert: "You don't have permission to view the member roster."
+    unless current_user.member.position.can_change_roster
+      redirect_to '/', alert: "You don't have permission to view the member roster."
     end
     @members = Member.all
   end
 
   # GET /members/1 or /members/1.json
   def show
-    if !current_user.member.position.member
-      redirect_to "/status"
-    end
+    redirect_to '/status' unless current_user.member.position.member
   end
 
   def profile
     if !current_user.member.position.member
-      redirect_to "/status"
+      redirect_to '/status'
     else
-      render "show"
+      render 'show'
     end
   end
 
   # GET /status
-  def status
-  end
+  def status; end
 
   # GET /members/new
   def new
@@ -38,7 +35,7 @@ class MembersController < ApplicationController
   # GET /members/1/edit
   def edit
     if current_user.member != @member && !current_user.member.position.can_change_roster
-      redirect_to "/", alert: "You don't have permission to edit this member profile."
+      redirect_to '/', alert: "You don't have permission to edit this member profile."
     end
     @positions = Position.all
   end
@@ -49,7 +46,7 @@ class MembersController < ApplicationController
 
     respond_to do |format|
       if @member.save
-        format.html { redirect_to @member, notice: "Member was successfully created." }
+        format.html { redirect_to @member, notice: 'Member was successfully created.' }
         format.json { render :show, status: :created, location: @member }
       else
         format.html { render :new, status: :unprocessable_entity }
@@ -62,7 +59,7 @@ class MembersController < ApplicationController
   def update
     respond_to do |format|
       if @member.update(member_params)
-        format.html { redirect_to @member, notice: "Member was successfully updated." }
+        format.html { redirect_to @member, notice: 'Member was successfully updated.' }
         format.json { render :show, status: :ok, location: @member }
       else
         format.html { render :edit, status: :unprocessable_entity }
@@ -74,38 +71,36 @@ class MembersController < ApplicationController
   # DELETE /members/1 or /members/1.json
   def destroy
     # destroy their ApplicationAnswers first
-    answers = ApplicationAnswer.where({member_email: @member[:email]})
-    if answers.size != 0
-      answers.destroy_all
-    end
+    answers = ApplicationAnswer.where({ member_email: @member[:email] })
+    answers.destroy_all unless answers.empty?
 
+    @member.destroy
     if current_user.member == @member
-      @member.destroy
       respond_to do |format|
-        format.html { redirect_to "/", notice: "You have been removed. We're sorry to see you go!" }
+        format.html { redirect_to '/', notice: "You have been removed. We're sorry to see you go!" }
         format.json { head :no_content }
       end
     else
-      @member.destroy
       respond_to do |format|
-        format.html { redirect_to members_url, notice: "Member was successfully removed from roster." }
+        format.html { redirect_to members_url, notice: 'Member was successfully removed from roster.' }
         format.json { head :no_content }
       end
     end
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_member
-      if action_name != "profile" && action_name != "status"
-        @member = Member.find(params[:email])
-      else
-        @member = current_user.member
-      end
-    end
 
-    # Only allow a list of trusted parameters through.
-    def member_params
-      params.require(:member).permit(:email, :full_name, :phone, :bio, :position_id, :grad_date, :points)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_member
+    @member = if action_name != 'profile' && action_name != 'status'
+                Member.find(params[:email])
+              else
+                current_user.member
+              end
+  end
+
+  # Only allow a list of trusted parameters through.
+  def member_params
+    params.require(:member).permit(:email, :full_name, :phone, :bio, :position_id, :grad_date, :points)
+  end
 end

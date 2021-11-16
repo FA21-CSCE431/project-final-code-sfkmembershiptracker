@@ -10,7 +10,6 @@
                 <div class="bg-gray-100 mb-5 p-3">
                     <form action="/dashboard/applicant" >
                     <%= form_with url: "/dashboard/applicant" do |f| %>
-                        <p class="font-medium">Email: <%= email %> </p>
                         <% app.each do |response| %>
                             <br>
                             <p class="font-semibold"><%= response[:question] %></p>

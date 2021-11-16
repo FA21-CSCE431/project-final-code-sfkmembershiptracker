@@ -4,4 +4,12 @@ class Member < ApplicationRecord
     has_many :application_answers
     has_many :participants
     has_many :events, :through => :participants
+
+    validates :email, presence: true, format: { with: URI::MailTo::EMAIL_REGEXP }
+    validates :full_name, presence: true
+    validates :phone, phone: { possible: true, allow_blank: true }
+    validates :bio, presence: false
+    validates :position_id, presence: true, numericality: true
+    validates :grad_date, date: { allow_blank: true }
+    validates :points, presence: true, numericality: { greater_than_or_equal_to: 0 }
 end

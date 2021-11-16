@@ -3,6 +3,8 @@ class User < ApplicationRecord
   has_one :position, through: :member
   accepts_nested_attributes_for :member
 
+  validates :email, presence: true, format: { with: URI::MailTo::EMAIL_REGEXP }
+
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :rememberable, :omniauthable, omniauth_providers: [:google_oauth2]

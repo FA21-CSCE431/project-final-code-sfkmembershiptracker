@@ -7,9 +7,9 @@ class Member < ApplicationRecord
 
     validates :email, presence: true, format: { with: URI::MailTo::EMAIL_REGEXP }
     validates :full_name, presence: true
-    validates :phone, phone: true, allow_blank: true
+    validates :phone, phone: { possible: true, allow_blank: true }
     validates :bio, allow_blank: true
     validates :position_id, presence: true, numericality: true
     validates_date :grad_date, allow_blank: true
-    validates :points, presence: true, numericality: true
+    validates :points, presence: true, numericality: { greater_than_or_equal_to: 0 }
 end

@@ -1,0 +1,8 @@
+<div class="mx-auto md:w-2/3 w-full flex">
+  <div class="mx-auto">
+    <% if current_user.member.position.can_change_positions? %>
+      <%= link_to 'Edit Information', edit_sfk_info_path(@sfk_info), class: "mt-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
+    <% end %>
+    <%= link_to 'Back to About Us', about_path, class: "ml-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
+  </div>
+</div>

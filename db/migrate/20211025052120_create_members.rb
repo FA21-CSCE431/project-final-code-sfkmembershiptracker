@@ -1,16 +1,16 @@
 class CreateMembers < ActiveRecord::Migration[6.1]
   def change
-    create_table :members do |t|
-      t.string :first_name
-      t.string :last_name
-      t.string :email
+    create_table :members, id: false do |t|
+      t.string :email, primary_key: true
+      t.string :full_name, null: false
       t.string :phone
-      t.integer :role
-      t.date :grad_date
-      t.integer :points
-      t.belongs_to :application, foreign_key: true
+      t.string :bio
+      t.belongs_to :position, null: false, foreign_key: true, default: 1
+      t.string :grad_date
+      t.integer :points, default: 0
 
       t.timestamps
     end
+    add_foreign_key :members, :users, column: :email, primary_key: "email"
   end
 end

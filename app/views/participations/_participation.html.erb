@@ -1,0 +1,21 @@
+<div id="<%= dom_id participation %>">
+  <p class="my-5">
+    <strong class="block font-medium mb-1">Event Name:</strong>
+    <%= Event.find_by(id: participation.event_id).name %>
+  </p>
+
+  <p class="my-5">
+    <strong class="block font-medium mb-1">Member Email:</strong>
+    <%= participation.member_email %>
+  </p>
+
+  <p class="my-5">
+    <strong class="block font-medium mb-1">User Code:</strong>
+    <%= participation.user_code %>
+  </p>
+
+  <% if action_name != "show" %>
+    <%= link_to "Show this participation", participation, class: "rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
+    <hr class="mt-6">
+  <% end %>
+</div>

@@ -1,0 +1,101 @@
+<h1 class="text-6xl font-black">Admin Dashboard</h1>
+<hr class="mb-10">
+<div class="flex-col">
+  <% if user_signed_in? %>
+      <% if current_user.member.position.can_change_apply? %>
+        <div>
+          <h2 class="text-2xl mb-3 font-semibold">Applicants</h2>
+          <% if @applications.any? %>
+            <% @applications.each do |email, app| %>
+                <div class="bg-gray-100 mb-5 p-3">
+                    <form action="/dashboard/applicant" >
+                    <%= form_with url: "/dashboard/applicant" do |f| %>
+                        <% app.each do |response| %>
+                            <br>
+                            <p class="font-semibold"><%= response[:question] %></p>
+                            <p class="font-thin"><%= response[:answer] %></p>
+                        <% end %>
+                        <br>
+
+    			        <div style="display: none;">
+    				        <input type="textbox" name="email" value="<%= email %>" >
+    			        </div>
+                        <%= f.submit "Accept", :class => "shadow bg-maroon hover:bg-maroon-dark focus:shadow-outline text-white font-bold py-2 px-4 rounded-lg cursor-pointer" %>
+                        <%= f.submit "Reject", :class => "shadow bg-maroon hover:bg-maroon-dark focus:shadow-outline text-white font-bold py-2 px-4 rounded-lg cursor-pointer" %>
+                    <% end %>
+                    </form>
+                </div>
+            <% end %>
+          <% else %>
+            <p class="font-semibold italic">No Applicants at this time.</p>
+          <% end %>
+        </div>
+
+        <br><br>
+
+        <div>
+            <h2 class="text-2xl mb-3 font-semibold">Edit Application Questions</h2>
+            <div class="bg-gray-100 mb-5 p-3">
+                <table>
+                <tbody>
+                    <% @questions.each do |q| %>
+                    <tr >
+                        <td class="font-semibold"><%= q.question %><br><br></td>
+                        <td><%= link_to 'Edit', '/dashboard/questions/' + q[:id].to_s, method: :get, :class => "shadow bg-maroon hover:bg-maroon-dark focus:shadow-outline text-white font-bold py-2 mr-3 px-4 rounded-lg cursor-pointer align-right" %></td>
+                        <td><%= link_to 'Delete', '/dashboard/questions/' + q[:id].to_s + '/destroy', method: :get, :class => "shadow bg-maroon hover:bg-maroon-dark focus:shadow-outline text-white font-bold py-2 px-4 rounded-lg cursor-pointer align-right" %></td>
+                    </tr>
+                    <% end %>
+                </tbody>
+                </table>
+                <br>
+                <%= link_to 'New Question', '/dashboard/questions/new', method: :get, :class => "shadow bg-maroon hover:bg-maroon-dark focus:shadow-outline text-white font-bold py-2 px-4 rounded-lg cursor-pointer align-right" %>
+            </div>
+        </div>
+        <% end %>
+    <% end %>
+
+    <br><br>
+
+    <div>
+      <% if user_signed_in? %>
+        <% if current_user.member.position.can_change_events? %>
+          <h2 class="text-2xl mb-3 font-semibold">Edit Event Information</h2>
+          <%= link_to 'Edit Events', events_path, class: "shadow bg-maroon hover:bg-maroon-dark focus:shadow-outline text-white font-bold py-3 ml-5 px-5 rounded-lg inline-block cursor-pointer" %>
+        <% end %>
+      <% end %>
+    </div>
+
+    <br><br>
+
+    <div>
+      <h2 class="text-2xl mb-3 font-semibold">View Member Event Paricipations</h2>
+      <% if user_signed_in? %>
+        <% if current_user.member.position.can_change_events? %>
+          <%= link_to 'Edit Participations', participations_path, class: "shadow bg-maroon hover:bg-maroon-dark focus:shadow-outline text-white font-bold py-3 ml-5 px-5 rounded-lg inline-block cursor-pointer" %>
+        <% end %>
+      <% end %>
+    </div>
+
+    <br><br>
+
+    <div>
+      <h2 class="text-2xl mb-3 font-semibold">View Member Roster</h2>
+      <% if user_signed_in? %>
+        <% if current_user.member.position.can_change_roster? %>
+          <%= link_to 'Member Roster', members_path, class: "shadow bg-maroon hover:bg-maroon-dark focus:shadow-outline text-white font-bold py-3 ml-5 px-5 rounded-lg inline-block cursor-pointer" %>
+        <% end %>
+      <% end %>
+    </div>
+
+    <br><br>
+
+    <div>
+      <h2 class="text-2xl mb-3 font-semibold">Edit About Us / Social Media</h2>
+      <% if user_signed_in? %>
+        <% if current_user.member.position.can_change_info? %>
+          <%= link_to 'Edit Information', edit_sfk_info_path(@info), class: "shadow bg-maroon hover:bg-maroon-dark focus:shadow-outline text-white font-bold py-3 ml-5 px-5 rounded-lg inline-block cursor-pointer" %>
+        <% end %>
+      <% end %>
+    </div>
+
+</div>

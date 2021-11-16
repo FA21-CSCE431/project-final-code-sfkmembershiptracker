@@ -1,0 +1,26 @@
+<div id="<%= dom_id blog_post %>">
+  <p class="my-5">
+    <strong class="block font-medium mb-1">Name:</strong>
+    <%= blog_post.name %>
+  </p>
+
+  <p class="my-5">
+    <strong class="block font-medium mb-1">Position:</strong>
+    <%= blog_post.position %>
+  </p>
+
+  <p class="my-5">
+    <strong class="block font-medium mb-1">Message:</strong>
+    <%= blog_post.message %>
+  </p>
+
+  <% if action_name != "show" %>
+    <%= link_to "Show this Post", blog_post, class: "rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
+    <% if user_signed_in? %>
+	  <% if current_user.member.position.can_change_events? %>
+        <%= link_to 'Edit this Post', edit_blog_post_path(blog_post), class: "rounded-lg py-3 ml-2 px-5 bg-gray-100 inline-block font-medium" %>
+     <% end %>
+	<% end %>
+    <hr class="mt-6">
+  <% end %>
+</div>

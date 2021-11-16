@@ -1,19 +1,18 @@
 class RoutesController < ApplicationController
-    before_action :authenticate_user!, only: [:status]
+  def home; end
 
-    def home
-    end
+  def about
+    @info = SfkInfo.last
+  end
 
-    def about
-    end
+  def social_media
+    @info = SfkInfo.last
+  end
 
-    def gallery
-    end
+  def team
+    @team = Member.joins(:position).where('position.officer' => true).order(position: :desc)
+    @team = Member.all
+  end
 
-    def team
-    end
-
-    def status
-    end
+  def dashboard; end
 end
-  

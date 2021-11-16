@@ -12,11 +12,19 @@ class EventsController < ApplicationController
   end
 
   def dashboard_admin
+    @info = SfkInfo.last
+
     @applications = {} # key: email, value: array of Q+A for that email
     answers = ApplicationAnswer.all
     answers.each{ |a|
       if !@applications.key?(a.member_email)
-        @applications[a.member_email] = []
+        mem = Member.find(a.member_email)
+        @applications[a.member_email] = [
+          {:question => "Name", :answer => mem.full_name},
+          {:question => "Email", :answer => mem.email},
+          {:question => "Phone", :answer => mem.phone},
+          {:question => "Graduation Date", :answer => mem.grad_date},
+        ]
       end
       @applications[a.member_email].push({
         :question => a.question,
@@ -160,7 +168,13 @@ class EventsController < ApplicationController
   # DELETE /events/1 or /events/1.json
   def destroy
     delete_participations = Participation.where(event_id: @event.id)
-    delete_participations.each { |x| x.destroy }
+    #delete_participations.each { |x| x.destroy }
+    for p in delete_participations
+      remove_member = Member.find_by(email: p.member_email)
+      remove_event = Event.find_by(id: p.event_id)
+      remove_member.update_attribute(:points, remove_member.points - remove_event.points)
+      p.destroy
+    end
 
     @event.destroy
     respond_to do |format|
@@ -190,7 +204,7 @@ class EventsController < ApplicationController
       @committee_socials = 0
       @sports_fest_prep = 0
       @meetings = 0
-      
+
       for i in events_participated do
         current_event = Event.find_by(id: i.event_id)
         if (current_event.event_type == 'Mandatory Event')

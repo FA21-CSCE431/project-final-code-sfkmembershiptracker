@@ -1,7 +1,7 @@
 <div id="<%= dom_id participation %>">
   <p class="my-5">
     <strong class="block font-medium mb-1">Event Name:</strong>
-    <%= participation.event_id %>
+    <%= Event.find_by(id: participation.event_id).name %>
   </p>
 
   <p class="my-5">

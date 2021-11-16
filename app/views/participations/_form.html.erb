@@ -12,8 +12,8 @@
   <% end %>
 
   <div class="my-5">
-    <%= form.label :name %>
-    <%= form.select :event_id, options_for_select(Event.select(:name, :id).where(date: 7.days.ago..).map{|c| [c.name, c.id]} ), { include_blank: "Select an Event" } %><br />
+    <%= form.label "Event Name: " %>
+    <%= form.select :event_id, options_for_select(Event.select(:name, :id).where(date: 7.days.ago..).map{|c| [c.name, c.id]} ), { include_blank: "Select an Event" } %>
   </div>
 
   <div class="my-5">
@@ -22,7 +22,7 @@
 
   <div class="my-5">
     <%= form.label "Enter the confirmation code" %>
-    <%= form.password_field :user_code, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %><br />
+    <%= form.password_field :user_code, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
   </div>
 
   <div class="inline">

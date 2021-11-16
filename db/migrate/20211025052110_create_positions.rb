@@ -5,6 +5,8 @@ class CreatePositions < ActiveRecord::Migration[6.1]
       t.boolean :can_change_positions, null: false, default: 'false'
       t.boolean :can_change_events, null: false, default: 'false'
       t.boolean :can_change_roster, null: false, default: 'false'
+      t.boolean :can_change_info, null: false, default: 'false'
+      t.boolean :can_change_apply, null: false, default: 'false'
       t.boolean :member, null: false, default: 'true'
       t.boolean :officer, null: false, default: 'false'
 

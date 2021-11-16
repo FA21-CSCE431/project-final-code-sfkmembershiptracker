@@ -16,9 +16,11 @@
 
   <% if action_name != "show" %>
     <%= link_to "Show this Post", blog_post, class: "rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
-    <% if current_user.member.position.can_change_events? %>
-      <%= link_to 'Edit this Post', edit_blog_post_path(blog_post), class: "rounded-lg py-3 ml-2 px-5 bg-gray-100 inline-block font-medium" %>
-    <% end %>
+    <% if user_signed_in? %>
+	  <% if current_user.member.position.can_change_events? %>
+        <%= link_to 'Edit this Post', edit_blog_post_path(blog_post), class: "rounded-lg py-3 ml-2 px-5 bg-gray-100 inline-block font-medium" %>
+     <% end %>
+	<% end %>
     <hr class="mt-6">
   <% end %>
 </div>

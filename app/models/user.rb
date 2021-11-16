@@ -1,4 +1,5 @@
 class User < ApplicationRecord
+  validates :email, presence: true
   has_one :member, foreign_key: "email", required: false
   has_one :position, through: :member
   accepts_nested_attributes_for :member

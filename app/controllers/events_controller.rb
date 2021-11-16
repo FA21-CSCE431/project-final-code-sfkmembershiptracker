@@ -120,6 +120,7 @@ class EventsController < ApplicationController
   end
 
   # GET /events or /events.json
+
   def index
     @events = Event.where(date: 1.month.ago..)
   end
@@ -130,6 +131,9 @@ class EventsController < ApplicationController
 
   # GET /events/new
   def new
+    if !current_user.member.position.can_change_events
+      redirect_to "/", alert: "You don't have permission to edit events."
+    end
     @event = Event.new
   end
 

@@ -16,3 +16,6 @@ AllCops:
     - 'tmp/**/*'
     - 'vendor/**/*'
     - '.git/**/*'
+
+Style/FrozenStringLiteralComment:
+  Enabled: false

@@ -4,6 +4,10 @@ class ParticipationsController < ApplicationController
 
   # GET /participations or /participations.json
   def index
+    if !current_user.member.position.can_change_events
+      redirect_to "/", alert: "You don't have permission to view the member participations."
+    end
+
     @participations = Participation.all
   end
 

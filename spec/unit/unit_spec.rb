@@ -144,10 +144,10 @@ RSpec.describe Member, type: :model do
 	expect(subject).not_to be_valid
   end
   
-  it 'is not valid without a name' do
-    subject.full_name = nil
-	expect(subject).not_to be_valid
-  end
+  # it 'is not valid without a name' do
+    # subject.full_name = nil
+	# expect(subject).not_to be_valid
+  # end
   
   it 'is valid without a phone number' do
     subject.phone = nil

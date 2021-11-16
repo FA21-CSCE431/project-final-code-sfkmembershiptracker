@@ -29,6 +29,8 @@ gem 'omniauth-google-oauth2'
 gem 'omniauth-rails_csrf_protection'
 # Validate and format phone numbers
 gem 'phonelib'
+# Validate and format dates
+gem 'date_validator'
 
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'

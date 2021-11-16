@@ -1,5 +1,6 @@
 class MembersController < ApplicationController
   before_action :authenticate_user!
+  before_action :check_member
   before_action :set_member, only: %i[ profile status show edit update destroy ]
 
   # GET /members or /members.json
@@ -36,6 +37,9 @@ class MembersController < ApplicationController
 
   # GET /members/1/edit
   def edit
+    if current_user.member != @member && !current_user.member.position.can_change_roster
+      redirect_to "/", alert: "You don't have permission to edit this member profile."
+    end
     @positions = Position.all
   end
 

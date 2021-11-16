@@ -79,7 +79,13 @@ def a_create
 		raise "New member not saved!"
 	end
 
-  params[:answers].each{ |ans| 
+	# address the case where no custom questions exist
+	answers = params[:answers].nil? \
+		? [{ q: "Placeholder question--add some in the admin's Dashboard!",
+			   a: "To access the admin's Dashboard, first log in with an admin account" }] 
+		: params[:answers]
+
+  answers.each{ |ans| 
     row = ApplicationAnswer.new(answer: ans[:a], question: ans[:q], 
                                    member_email: current_user.id)
     if !row.save

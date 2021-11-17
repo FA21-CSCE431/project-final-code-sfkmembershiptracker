@@ -11,7 +11,6 @@ class RoutesController < ApplicationController
 
   def team
     @team = Member.joins(:position).where('position.officer' => true).order(position: :desc)
-    @team = Member.all
   end
 
   def dashboard; end

@@ -12,12 +12,19 @@ RSpec.describe 'Test OAuth', type: :feature do
     expect(page).to have_content('Not found. Authentication passthru.')
   end
 
-  scenario 'Check status when not logged in' do
+  scenario 'Access member resource when not logged in' do
     visit '/status'
     expect(page).to have_content("You need to sign in or sign up before continuing.")
   end
 
-  scenario 'Sign in with OAuth' do
+  scenario 'Sign in to OAuth for the first time' do
+    visit '/'
+    set_omniauth({uid: '1234', email: 'test@example.com', full_name: 'John Doe', avatar_url: ''})
+    click_button 'Login/Register'
+    expect(page).to have_content("Apply Now")
+  end
+
+  scenario 'Sign in with OAuth as existing member' do
     visit '/'
     set_omniauth()
     click_button 'Login/Register'
@@ -25,20 +32,21 @@ RSpec.describe 'Test OAuth', type: :feature do
     expect(page).to have_content('Status')
   end
 
-  # scenario 'Sign in to OAuth with invalid credentials' do
-  #   visit '/'
-  #   set_invalid_omniauth()
-  #   click_button 'Login/Register'
-  #   expect(page).to have_content('Status')
-  # end
+  scenario 'Sign in to OAuth with invalid credentials' do
+    visit '/'
+    set_invalid_omniauth()
+    click_button 'Login/Register'
+    expect(page).to have_content("Could not authenticate you from GoogleOauth2 because \"Invalid credentials\".")
+  end
 
   scenario 'Log out with OAuth' do
     visit '/'
     set_omniauth()
     click_button 'Login/Register'
-    visit '/'
-    click_link 'Logout'
-    visit '/status'
+    visit '/profile'
+    expect(page).to have_content("Profile")
+    visit destroy_user_session_path
+    visit '/profile'
     expect(page).to have_content("You need to sign in or sign up before continuing.")
   end
 end
@@ -51,7 +59,12 @@ RSpec.describe 'Test status page', type: :feature do
 
   scenario 'Redirect to Status Page' do
     visit '/'
-    set_omniauth({uid: '1234', email: 'test@example.com', full_name: 'John Doe', avatar_url: ''})
+    set_omniauth({
+      uid: '117163153697784923471',
+      email: 'kiddrock025@tamu.edu',
+      full_name: 'Nicholas LaBombard',
+      avatar_url: 'https://lh3.googleusercontent.com/a/AATXAJw9rp4zQCcUFbCNWPtiWdILj23QYrwqaG1Mrci1=s96-c'
+    })
     click_button 'Login/Register'
     visit '/profile'
     expect(page).to have_content("Application Status")
@@ -84,6 +97,14 @@ RSpec.describe 'Test Org Position Permissions', type: :feature do
   end
 
   scenario 'Visit profile as applicant' do
+    visit '/'
+    set_omniauth({
+      uid: '117163153697784923471',
+      email: 'kiddrock025@tamu.edu',
+      full_name: 'Nicholas LaBombard',
+      avatar_url: 'https://lh3.googleusercontent.com/a/AATXAJw9rp4zQCcUFbCNWPtiWdILj23QYrwqaG1Mrci1=s96-c'
+    })
+    click_button 'Login/Register'
     visit '/profile'
     expect(page).to have_content("Application Status")
   end
@@ -102,8 +123,16 @@ RSpec.describe 'Test Org Position Permissions', type: :feature do
   end
 
   scenario 'Visit dashboard as applicant' do
+    visit '/'
+    set_omniauth({
+      uid: '117163153697784923471',
+      email: 'kiddrock025@tamu.edu',
+      full_name: 'Nicholas LaBombard',
+      avatar_url: 'https://lh3.googleusercontent.com/a/AATXAJw9rp4zQCcUFbCNWPtiWdILj23QYrwqaG1Mrci1=s96-c'
+    })
+    click_button 'Login/Register'
     visit '/dashboard'
-    expect(page).to have_content("You must be a member of this organization to access this resource.")
+    expect(page).to have_content("You don't have permission to view the dashboard.")
   end
 
   scenario 'Visit dashboard as member' do

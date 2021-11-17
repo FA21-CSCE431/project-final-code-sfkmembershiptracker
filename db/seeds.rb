@@ -64,7 +64,7 @@ Member.create([
     { email: 'sclark@tamu.edu', full_name: 'Steven Clark', position_id: '2' },
     { email: 'lfh447@tamu.edu', full_name: 'Luis Hernandez', position_id: '2' },
     { email: 'nickbanderson@tamu.edu', full_name: 'Nicholas Anderson', position_id: '2' },
-    { email: 'kiddrock025@tamu.edu', full_name: 'Nicholas LaBombard', position_id: '2' },
+    { email: 'kiddrock025@tamu.edu', full_name: 'Nicholas LaBombard', position_id: '1' },
     { email: 'sutrisnaroy@tamu.edu', full_name: 'Sutrisna Roy', position_id: '2' }
 ])
 

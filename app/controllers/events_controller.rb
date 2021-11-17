@@ -1,9 +1,12 @@
 class EventsController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_event, only: %i[show edit update destroy]
+  before_action :check_member
+  before_action :set_event, only: %i[ show edit update destroy ]
 
   def dashboard
-    if current_user.member.position.officer
+    if !current_user.member.position.member?
+      redirect_to '/', alert: "You don't have permission to view the dashboard."
+    elsif current_user.member.position.officer
       dashboard_admin
     else
       events_participated
@@ -26,10 +29,7 @@ class EventsController < ApplicationController
           { question: 'Graduation Date', answer: mem.grad_date }
         ]
       end
-      @applications[a.member_email].push({
-                                           question: a.question,
-                                           answer: a.answer
-                                         })
+      @applications[a.member_email].push({ question: a.question, answer: a.answer })
     end
 
     @questions = ApplicationQuestion.all

@@ -14,6 +14,8 @@ Rails.application.configure do
   # Show full error reports.
   config.consider_all_requests_local = true
 
+  config.hosts.clear
+
   # Enable/disable caching. By default caching is disabled.
   # Run rails dev:cache to toggle caching.
   if Rails.root.join('tmp', 'caching-dev.txt').exist?
@@ -45,9 +47,7 @@ Rails.application.configure do
     domain: 'gmail.com',
     authentication: 'plain',
     enable_starttls_auto: true,
-    #user_name: ENV['GMAIL_USERNAME'],
-    #password: ENV['GMAIL_PASSWORD']
-	user_name: 'sfk.website.431@gmail.com',
+	  user_name: 'sfk.website.431@gmail.com',
     password: 'sfk431admin'
   }
 

@@ -1,3 +1,3 @@
-web: bin/rails server -p ${PORT:-5000} -e $RAILS_ENV
-release: bundle exec rails db:migrate
-release: bundle exec rails db:seed
+web: bundle exec puma -t 5:5 -p ${PORT:-3000} -e ${RACK_ENV:-development}
+release: rails db:migrate
+release: rails db:seed

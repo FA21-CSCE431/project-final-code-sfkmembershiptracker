@@ -10,6 +10,5 @@ class Member < ApplicationRecord
   validates :phone, phone: { possible: true, allow_blank: true }
   validates :bio, presence: false
   validates :position_id, presence: true, numericality: true
-  validates :grad_date, date: { allow_blank: true }
   validates :points, presence: true, numericality: { greater_than_or_equal_to: 0 }
 end

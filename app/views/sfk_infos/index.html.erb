@@ -1,8 +1,9 @@
 <div class="w-full">
   <div class="flex justify-between items-center">
-    <h1 class="text-lg font-bold text-4xl">Information</h1>
+    <h1 class="text-6xl font-black">Information</h1>
     <% if current_user.member.position_id == 3 %>
-      <%= link_to 'New Info', new_sfk_info_path, class: "rounded-lg py-3 px-5 bg-blue-600 text-white block font-medium" %>
+      <%= link_to 'New Info', new_sfk_info_path, class: "mt-2 py-3 px-5 inline-block font-medium bg-maroon hover:bg-maroon-light rounded-lg text-white" %>
     <% end %>
   </div>
+  <hr class="mb-10">
 </div>

@@ -1,12 +1,11 @@
 <div class="w-full">
   <div class="flex justify-between items-center">
-    <h1 class="text-lg font-bold text-4xl">Announcements</h1>
-	<% if user_signed_in? %>
-	  <% if current_user.member.position.can_change_events? %>
-	    <%= link_to 'New Post', new_blog_post_path, class: "rounded-lg py-3 px-5 bg-blue-600 text-white block font-medium" %>
-	  <% end %>
-	<% end %>
+    <h1 class="text-6xl font-black">Announcements</h1>
+    <% if current_user.member.position.can_change_events? %>
+      <%= link_to 'New Post', new_blog_post_path, class: "mt-2 py-3 px-5 inline-block font-medium bg-maroon hover:bg-maroon-light rounded-lg text-white" %>
+    <% end %>
   </div>
+  <hr class="mb-10">
 
   <div id="blog_posts" class="min-w-full">
     <%= render @blog_posts %>

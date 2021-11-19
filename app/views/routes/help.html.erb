@@ -1,0 +1,98 @@
+<h1 class="text-6xl font-black">Help Guide</h1>
+<hr class="mb-10">
+<p class="my-5">Welcome to the help guide for the Sports For Kids Membership Tracker. It is recommended that you read the 
+entirety of this document before using the app.</p>
+
+<h2 class="text-2xl mb-3 font-semibold">Table of Contents</h2>
+<ul class="my-5 list-disc">
+    <li><a class="text-blue-600" href="#heroku">Heroku</a></li>
+    <li><a class="text-blue-600" href="#database">The Database</a></li>
+    <li><a class="text-blue-600" href="#oauth">Google OAuth</a></li>
+    <li><a class="text-blue-600" href="#permissions">Member Permissions</a></li>
+    <li><a class="text-blue-600" href="#errors">Error Codes</a></li>
+    <li><a class="text-blue-600" href="#github">GitHub</a></li>
+    <li><a class="text-blue-600" href="#transfer">Transferring Ownership</a></li>
+</ul>
+
+<section id="heroku">
+    <h2 class="text-2xl mb-3 font-semibold">Heroku</h2>
+    <p class="my-5">
+        This web app is deployed by and hosted through Heroku. The Heroku dashboard, which contains tools to monitor, edit, 
+        and deploy your app, can be found <a class="text-blue-600" href="https://dashboard.heroku.com/" target="_blank">here</a>.
+    </p>
+</section>
+
+<section id="database">
+    <h2 class="text-2xl mb-3 font-semibold">The Database</h2>
+    <p class="my-5">
+        Information used by this app is stored in a Heroku PostgreSQL database. On Heroku, it can be found under "Installed add-ons" 
+        within the overview tab for this app. Because the free tier of Heroku doesn't provide continuous backup protection and 
+        rollback support, it is HIGHLY recommended that you periodically make a manual backup of the database. More information on 
+        making and restoring from manual backups can be found 
+        <a class="text-blue-600" href="https://devcenter.heroku.com/articles/heroku-postgres-backups" target="_blank">here</a>.
+    </p>
+</section>
+
+<section id="oauth">
+    <h2 class="text-2xl mb-3 font-semibold">Google OAuth</h2>
+    <p class="my-5">
+        Signing into the SFK Membership Tracker is made easy using Google OAuth. Once signed in, a user will be remembered for two weeks 
+        or until they sign out. Google OAuth requires using the Google Cloud Platform, which contains important settings used to configure 
+        OAuth for this website. For that reason it is <em>very important</em> that at least one officer has ownership of the project on 
+        Google Cloud at all times. The Google Cloud Platform dashboard can be found <a class="text-blue-600" href="https://console.cloud.google.com" target="_blank">here</a>.
+    </p>
+</section>
+
+<section id="permissions">
+    <h2 class="text-2xl mb-3 font-semibold">Member Permissions</h2>
+    <p class="my-5">Each membership role within the organization has varying levels of access to the features on this website:</p>
+    <ul class="my-5 list-disc">
+        <li><b>Applicant</b> - Applicants are capable of checking the status of their application, view announcements, and see upcoming 
+        events.</li>
+        <li><b>Member</b> - Members have all of the privileges of an applicant, plus the ability to track their participation through 
+        the member dashboard and view/edit their information through the profile page.</li>
+        <li><b>Officer</b> - Officers have access to the admin dashboard and app documentation (this page). All officers are able to 
+        create/edit/delete events and announcements.</li>
+        <li><b>Managerial Co-Chair</b> - The Managerial Co-Chair has full control over the website. This includes the ability to 
+        edit application questions, approve/reject applicants, edit any member's profile and participation, and edit the About Us and 
+        Social Media pages.</li>
+    </ul>
+</section>
+
+<section id="errors">
+    <h2 class="text-2xl mb-3 font-semibold">Error Codes</h2>
+    <p class="my-5">The following section describes common error codes that a user might encounter when using this app. 
+    If you are unsure of what is causing the error, check the logs for this app on Heroku.</p>
+    <ul class="my-5 list-disc">
+        <li><b>404 - "Not Found"</b>: The page/resource wasn't found. If you're certain that the URL is correct, 
+            then the page was most likely moved or deleted.</li>
+        <li><b>406 - "Not Acceptable"</b>: This application doesn't support the client's request with a given protocol. 
+            A possible solution is to try again using a different browser.</li>
+        <li><b>422 - "Unprocessable Entity"</b>: The server understands the type of request being made, but there is an 
+            error that is preventing it from being processed. The user will most likely need to diagnose the issue themself.</li>
+        <li><b>500 - "Internal Server Error"</b>: The issue is on the server side. It could be caused by anything from 
+            unscheduled database maintenance by Heroku to a bug in the code. You will need to check the app logs on Heroku 
+            to diagnose the problem.</li>
+    </ul>
+</section>
+
+<section id="github">
+    <h2 class="text-2xl mb-3 font-semibold">GitHub</h2>
+    <p class="my-5">GitHub is a platform for sharing and collaborating on code. The source code for this app is stored in a 
+    private repository (similar to a shared drive) on GitHub. Because this code contains sensitive information such as your API 
+    key for Google OAuth, you should <em>never</em> share the repository with anyone who isn't maintaining the website. Likewise, 
+    the repository should never be made public. The repo can be found <a class="text-blue-600" href="#" target="_blank">here</a> (Note that visiting 
+    this link will give you a 404 error unless you are signed into a GitHub account with access to the repository).</p>
+</section>
+
+<section id="transfer">
+    <h2 class="text-2xl mb-3 font-semibold">Transferring Ownership</h2>
+    <p class="my-5">The following is a checklist of necessary actions to ensure that the next owner has full control of this app:</p>
+    <ol class="my-5 list-decimal">
+        <li><b>Promote the new owner to Managerial Co-Chair</b>: This can be done by editing their profile in the member roster.</li>
+        <li><b>Add them as an owner to the project on Google Cloud Platform</b>: You will see the ability to "add people to this project" 
+        under the Project Info pane on the home page of the dashboard. Make sure to give them the role of owner.</li>
+        <li><b>Transfer ownership of the Heroku app</b>: </li>
+        <li><b>Add them to the GitHub repo</b>: Within the repository, go to settings > manage access to add them as a collaborator.</li>
+    </ol>
+</section>

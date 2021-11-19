@@ -41,6 +41,7 @@ Rails.application.routes.draw do
   post 'answers', to: 'apply#a_create'
 
   get 'about', to: 'routes#about'
+  get 'help', to: 'routes#help'
 
   match '/404', to: 'errors#not_found', via: :all
   match '/406', to: 'errors#unacceptable', via: :all

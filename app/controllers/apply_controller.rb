@@ -74,7 +74,10 @@ class ApplyController < ApplicationController
                               position_id: 1 # applicant
                             })
 
-    raise 'New member not saved!' unless new_member.save
+    if !new_member.save 
+      new_member.errors.full_messages
+      raise 'New member not saved!' 
+    end
 
     # address the case where no custom questions exist
     answers = if params[:answers].nil?
@@ -88,6 +91,8 @@ class ApplyController < ApplicationController
       row = ApplicationAnswer.new(answer: ans[:a], question: ans[:q],
                                   member_email: current_user.id)
       next if row.save
+
+      row.errors.full_messages
 
       respond_to do |format|
         format.html { redirect_to '/home', notice: 'ERROR: Application not submitted!' }

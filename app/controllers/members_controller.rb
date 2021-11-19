@@ -71,17 +71,16 @@ class MembersController < ApplicationController
   # DELETE /members/1 or /members/1.json
   def destroy
     # destroy their ApplicationAnswers first
-    # answers = ApplicationAnswer.where({ member_email: @member[:email] })
-    # answers.destroy_all unless answers.empty?
+    answers = ApplicationAnswer.where({ member_email: @member[:email] })
+    answers.destroy_all unless answers.empty?
 
+    @member.destroy
     if current_user.member == @member
-      @member.destroy
       respond_to do |format|
         format.html { redirect_to '/', notice: "You have been removed. We're sorry to see you go!" }
         format.json { head :no_content }
       end
     else
-      @member.destroy
       respond_to do |format|
         format.html { redirect_to members_url, notice: 'Member was successfully removed from roster.' }
         format.json { head :no_content }

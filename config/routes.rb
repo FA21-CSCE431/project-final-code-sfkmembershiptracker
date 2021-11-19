@@ -42,11 +42,6 @@ Rails.application.routes.draw do
 
   get 'about', to: 'routes#about'
   get 'help', to: 'routes#help'
-
-  match '/404', to: 'errors#not_found', via: :all
-  match '/406', to: 'errors#unacceptable', via: :all
-  match '/422', to: 'errors#unprocessable', via: :all
-  match '/500', to: 'errors#internal_server', via: :all
   
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routes.html
 end

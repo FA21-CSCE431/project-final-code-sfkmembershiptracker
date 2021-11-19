@@ -8,6 +8,6 @@ class Event < ApplicationRecord
   validates :points, presence: true, numericality: true
   validates :confirmation_code, presence: true
 
-  has_many :participants, foreign_key: 'event_id', class_name: 'Participation', dependent: :destroy
-  has_many :members, through: :participants
+  has_many :participants, dependent: :nullify
+  has_many :members, dependent: :nullify
 end

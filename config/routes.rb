@@ -41,6 +41,7 @@ Rails.application.routes.draw do
   post 'answers', to: 'apply#a_create'
 
   get 'about', to: 'routes#about'
+  get 'help', to: 'routes#help'
   
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routes.html
 end

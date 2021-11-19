@@ -16,7 +16,7 @@ Position.create([
     { role: 'Intramurals Executive', can_change_events: 'true', officer: 'true' },
     { role: 'Fundraising/Outreach Executive', can_change_events: 'true', officer: 'true' },
     { role: 'Boys & Girls Club Executive', can_change_events: 'true', officer: 'true' },
-    { role: 'Financial Co-Chair', officer: 'true' },
+    { role: 'Financial Co-Chair', can_change_events: 'true', officer: 'true' },
     { role: 'Managerial Co-Chair', can_change_positions: 'true', can_change_events: 'true', can_change_roster: 'true', can_change_info: 'true', can_change_apply: 'true', officer: 'true' },
 ])
 

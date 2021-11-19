@@ -68,7 +68,7 @@
     <br><br>
 
     <div>
-      <h2 class="text-2xl mb-3 font-semibold">View Member Event Paricipations</h2>
+      <h2 class="text-2xl mb-3 font-semibold">View Member Event Participation</h2>
       <% if user_signed_in? %>
         <% if current_user.member.position.can_change_events? %>
           <%= link_to 'Edit Participations', participations_path, class: "shadow bg-maroon hover:bg-maroon-dark focus:shadow-outline text-white font-bold py-3 ml-5 px-5 rounded-lg inline-block cursor-pointer" %>

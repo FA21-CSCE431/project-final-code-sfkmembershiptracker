@@ -5,9 +5,9 @@ class Event < ApplicationRecord
   validates :event_type, presence: true
   validates :date, presence: true
   validates :location, presence: true
-  validates :points, presence: true
+  validates :points, presence: true, numericality: true
   validates :confirmation_code, presence: true
 
-  has_many :participants, dependent: :nullify
-  has_many :members, dependent: :nullify
+  has_many :participants, foreign_key: 'event_id', class_name: 'Participation', dependent: :destroy
+  has_many :members, through: :participants
 end

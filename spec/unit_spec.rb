@@ -43,7 +43,7 @@ RSpec.describe Event do
   # it 'is valid with valid attributes' do
   #   expect(subject).to be_valid
   # end
-
+	
   it 'is not valid without a name' do
     subject.name = nil
     expect(subject).not_to be_valid
@@ -68,6 +68,11 @@ RSpec.describe Event do
     subject.points = nil
     expect(subject).not_to be_valid
   end
+	
+	it 'is not valid if points is not number' do
+    subject.points = 2
+    expect(subject).not_to be_valid
+  end
 
   it 'is not valid without an confirmation code' do
     subject.confirmation_code = nil
@@ -77,7 +82,7 @@ end
 
 RSpec.describe SfkInfo do
   subject do
-    described_class.new(mission: 'This is our mission.', history: 'This is our history.', ig_link: 'testlink')
+    described_class.new(mission: 'This is our mission.', history: 'This is our history.', ig_link: 'CN7ijg7lbkd')
   end
 
   it 'is valid with valid attributes' do
@@ -94,9 +99,10 @@ RSpec.describe SfkInfo do
     expect(subject).not_to be_valid
   end
 
-  # it 'is not valid without instagram link' do
-  #   subject.ig_link = nil
-  #   expect(subject).not_to be_valid
+  it 'is not valid without formatted Instagram link' do
+		subject.ig_link = 'special*character'
+    expect(subject).not_to be_valid
+  end
 end
 
 RSpec.describe Position, type: :model do
@@ -249,5 +255,50 @@ RSpec.describe Member, type: :model do
   
   it 'is valid with default attributes' do
     expect(subject).to be_valid
+  end
+end
+
+RSpec.describe ApplicationQuestion, type: :model do
+  subject do
+    described_class.new(question: 'question1')
+  end
+
+  it 'is valid with valid attributes' do
+    expect(subject).to be_valid
+  end
+	
+	it 'is not valid without a question' do
+		subject.question = nil
+    expect(subject).not_to be_valid
+  end
+end
+
+RSpec.describe ApplicationAnswer, type: :model do
+  subject do
+    described_class.new(answer: 'answer1', question: 'question1', member_email: 'jdoe@example.com')
+  end
+
+  it 'is valid with valid attributes' do
+    expect(subject).to be_valid
+  end
+
+  it 'is not valid without an email' do
+    subject.member_email = nil
+    expect(subject).not_to be_valid
+  end
+	
+	it 'is not valid without proper formatting of email' do
+		subject.member_email = 'email'
+    expect(subject).not_to be_valid
+  end
+	
+	it 'is not valid without an answer' do
+		subject.answer = nil
+    expect(subject).not_to be_valid
+  end
+	
+	it 'is not valid without a question' do
+		subject.question = nil
+    expect(subject).not_to be_valid
   end
 end

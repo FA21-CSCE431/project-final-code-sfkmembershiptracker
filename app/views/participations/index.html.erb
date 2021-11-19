@@ -2,7 +2,7 @@
   <% if current_user.member.position.can_change_events? %>
     <div class="flex justify-between items-center">
       <h1 class="text-6xl font-black">Member Participations</h1>
-      <%= link_to 'New participation', new_participation_path, class: "rounded-lg py-3 px-5 bg-blue-600 text-white block font-medium" %>
+      <%= link_to 'New participation', new_participation_path, class: "py-3 px-5 inline-block font-medium bg-maroon hover:bg-maroon-light rounded-lg text-white" %>
     </div>
 
     <div id="participations" class="min-w-full">

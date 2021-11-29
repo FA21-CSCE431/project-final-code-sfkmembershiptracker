@@ -11,7 +11,7 @@
 
   <body>
     <%= render "layouts/nav" %>
-    <div class="container fixed flex justify-center mx-auto mt-1">
+    <div class="fixed flex justify-center mt-1 w-full">
       <% flash.each do |type, msg| %>
         <% if (type == 'notice') %>
           <p class="notice inline-block bg-green-50 text-green-500 p-4 rounded animate-fade"><%= notice %></p>

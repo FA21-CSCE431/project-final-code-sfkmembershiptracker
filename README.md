@@ -27,14 +27,14 @@ This app can be run entirely in a Docker container. In two terminals running sim
 ## CICD
 * To prevent merge conflicts, our team created feature branches that we worked on. Once the feature was complete, the member would create a pull request. At this time, another member would perform a code review to ensure the Acceptance Criteria and Definition of Done were met. If so, the member would merge to the dev branch. At the end of each sprint, the working dev branch would be merged to the main branch. No GitHub Actions were used to assist, but we strongly recommend its use if additional features are later implemented.
 * Heroku was used for Continuous Deployment.
-*   1. Create Heroku account: https://signup.heroku.com/login
-*   2. Go to your dashboard: https://dashboard.heroku.com/apps
-*   3. Under "New" select "Create new pipeline"
-*   4. Complete the form and choose GitHub repository for connection
-*   5. Enable review apps
-*   6. Create test app and staging app
-*   7. Under the staging app, click on "Deploy" and enable automatic deploys from GitHub for the main branch
-*   8. Heroku is now set up. Move the staging app to production after initial commit and use review apps to view changes before merging to the dev branch.
+  1. Create Heroku account: https://signup.heroku.com/login
+  2. Go to your dashboard: https://dashboard.heroku.com/apps
+  3. Under "New" select "Create new pipeline"
+  4. Complete the form and choose GitHub repository for connection
+  5. Enable review apps
+  6. Create test app and staging app
+  7. Under the staging app, click on "Deploy" and enable automatic deploys from GitHub for the main branch
+  8. 8. Heroku is now set up. Move the staging app to production after initial commit and use review apps to view changes before merging to the dev branch.
 
 ## OAuth
 * OAuth is implemented using Devise with Omniauth. Add the following to any controller that requires a user to be logged in:

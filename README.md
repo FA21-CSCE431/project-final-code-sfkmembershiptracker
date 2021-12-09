@@ -34,7 +34,7 @@ This app can be run entirely in a Docker container. In two terminals running sim
   5. Enable review apps
   6. Create test app and staging app
   7. Under the staging app, click on "Deploy" and enable automatic deploys from GitHub for the main branch
-  8. 8. Heroku is now set up. Move the staging app to production after initial commit and use review apps to view changes before merging to the dev branch.
+  8. Heroku is now set up. Move the staging app to production after initial commit and use review apps to view changes before merging to the dev branch.
 
 ## OAuth
 * OAuth is implemented using Devise with Omniauth. Add the following to any controller that requires a user to be logged in:
